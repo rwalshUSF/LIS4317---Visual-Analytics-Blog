@@ -1,10 +1,10 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "LIS4317 - Visual Analytics Blog",
+    "objectID": "posts/Module 1 Assignment 1/index.html",
+    "href": "posts/Module 1 Assignment 1/index.html",
+    "title": "Module # 1: Assignment # 1:",
     "section": "",
-    "text": "Module # 1: Assignment # 1:\n\n\n\n\n\n\n\n\n\n\n\nAug 24, 2025\n\n\nRobert Walsh\n\n\n\n\n\n\nNo matching items"
+    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
   },
   {
     "objectID": "about.html",
@@ -14,10 +14,10 @@
     "text": "UNIVERSITY OF SOUTH FLORIDA - SCHOOL OF INFORMATION STUDENT\nA blog for sharing my class assignments."
   },
   {
-    "objectID": "posts/welcome/index.html",
-    "href": "posts/welcome/index.html",
-    "title": "Module # 1: Assignment # 1:",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "LIS4317 - Visual Analytics Blog",
     "section": "",
-    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+    "text": "Module # 1: Assignment # 1:\n\n\n\n\n\n\n\n\n\n\n\nAug 24, 2025\n\n\nRobert Walsh\n\n\n\n\n\n\nNo matching items"
   }
 ]
