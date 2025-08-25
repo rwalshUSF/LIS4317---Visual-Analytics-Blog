@@ -4,7 +4,7 @@
     "href": "posts/Module 1 Assignment 1/index.html",
     "title": "Module # 1: Assignment # 1:",
     "section": "",
-    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+    "text": "This is the first post in my LIS4317 Visual Analytics blog. Welcome!\nThe assignment requires an example of a data visualization and some analysis.\nHere is the example I chose:\n\nKostandi, C. (2022). World’s Population at 8 Billion People [Image]. VisualCapitalist.com. https://www.visualcapitalist.com/visualized-the-worlds-population-at-8-billion/\nFor the analysis portion of the assignment:\nI believe that the data visualization was created by a human, and not by AI. My reasoning supporting this conclusion is based on the data points and how they seem to accurately quantify the populations of the countries of the world. The data may be skewed and/or biased, and the data may be incorrect or un-accurate. However, due to the fact that the visualization is published on a website, with the authors name and the date that it was created, this adds a layer of transparency and accountability to validate the research data. I dont believe that AI was used to create the visualization because the facts are clearly labeled and displayed. AI may have produced noticeable errors or facts that may seem hard to believe. The image represents truth well."
   },
   {
     "objectID": "about.html",
