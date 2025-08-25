@@ -1,1 +1,1 @@
-Sitemap: https://64257c1f-785e-4075-b355-8a7db813e155.netlify.app/sitemap.xml
+Sitemap: https://rwalshusf.quarto.pub/lis4317---visual-analytics-blog/sitemap.xml
