@@ -22,7 +22,9 @@ I was then required to open the dataset .csv file and save it as a 'Google Sheet
 
 I then signed up and downloaded the free version of 'Tableau Public' and connected to my Google Drive. Doing so allowed me to utilize the dataset within Tableau to create an interactive geographical map that displayed the various zip codes in Hillsborough County, Florida, along with their boundaries and a heat map showing the number of schools operating within each zip code. Here is the map image:
 
-![](images/Sheet 1-01.png){width="100%"}
+Click on the image to view it in full size!
+
+[![](Sheet 1.png)](Sheet 1.png)
 
 I faced several challenges during the process, including adding spreadsheet columns to the 'Marks' in Tableau and exporting the worksheet as a .png image file. I was able to research ways to drag the columns in Tableau to the various options for the 'Marks' and found that creating the map with 'zipcode' and 'details' worked well. I then added a label for each zip code and chose a 'Filled Map' style to highlight the boundaries and patterns for Hillsborough County zip codes. I was also able to research ways to export a worksheet and learned that I was not able to export the worksheet to an image from the desktop application. I needed to publish/save the project to Tableau Public online to export the map to a .png image file on my local hard drive.
 
