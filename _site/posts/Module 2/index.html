@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Robert Walsh">
+<meta name="dcterms.date" content="2025-09-01">
 
-<title>LIS4317 - Visual Analytics Blog</title>
+<title>Module # 2: My Geographic Map of Hillsborough County Public Schools by Zipcode – LIS4317 - Visual Analytics Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +25,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,77 +68,19 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">LIS4317 - Visual Analytics Blog</span>
     </a>
   </div>
@@ -149,7 +91,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About Me</span></a>
   </li>  
 </ul>
@@ -162,98 +104,64 @@ window.Quarto = {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page">
-      <h1 class="title">LIS4317 - Visual Analytics Blog</h1>
+    <div class="quarto-title column-body">
+      <h1 class="title">Module # 2: My Geographic Map of Hillsborough County Public Schools by Zipcode</h1>
                       </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page">
+  <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Robert Walsh </p>
+            </div>
+    </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">September 1, 2025</p>
+      </div>
+    </div>
     
       
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content quarto-banner-title-block column-page" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
+<p>This is my second post for my LIS4317 Visual Analytics blog. Welcome!</p>
+<p>The assignment required me to perform a search using ‘Google Dataset Search’ using keywords that interest me, ensuring that the dataset included a column of complete street addresses. I chose the following keywords for my search:</p>
+<p>‘Hillsborough County Public School Locations’</p>
+<p>I chose these keywords because I wanted to create a map of Hillsborough County Public Schools that shows the zip codes with the most and least schools within them.</p>
+<p>Here is the dataset that I chose to use:</p>
+<p><a href="https://hub.arcgis.com/datasets/hillsborough::schools/explore" class="uri">https://hub.arcgis.com/datasets/hillsborough::schools/explore</a></p>
+<p>I was then required to open the dataset .csv file and save it as a ‘Google Sheet’ that would be saved on my ‘Google Drive.’</p>
+<p><a href="https://docs.google.com/spreadsheets/d/12fRF6A_MnygfVKmYrZZjixUTxyqHJ8d5q1VuxemOheA/edit?gid=70990919#gid=70990919" class="uri">https://docs.google.com/spreadsheets/d/12fRF6A_MnygfVKmYrZZjixUTxyqHJ8d5q1VuxemOheA/edit?gid=70990919#gid=70990919</a></p>
+<p>I then signed up and downloaded the free version of ‘Tableau Public’ and connected to my Google Drive. Doing so allowed me to utilize the dataset within Tableau to create an interactive geographical map that displayed the various zip codes in Hillsborough County, Florida, along with their boundaries and a heat map showing the number of schools operating within each zip code. Here is the map image:</p>
+<p><img src="images/Sheet 1-01.png" class="img-fluid" style="width:100.0%"></p>
+<p>I faced several challenges during the process, including adding spreadsheet columns to the ‘Marks’ in Tableau and exporting the worksheet as a .png image file. I was able to research ways to drag the columns in Tableau to the various options for the ‘Marks’ and found that creating the map with ‘zipcode’ and ‘details’ worked well. I then added a label for each zip code and chose a ‘Filled Map’ style to highlight the boundaries and patterns for Hillsborough County zip codes. I was also able to research ways to export a worksheet and learned that I was not able to export the worksheet to an image from the desktop application. I needed to publish/save the project to Tableau Public online to export the map to a .png image file on my local hard drive.</p>
+<p>Some additional graphical elements or Gestalt principles that I applied to the finished map to improve clarity and insight were:</p>
+<ol type="1">
+<li>Adjust point size and color scale. By making the font on the title and zip codes a little bigger and bold, I was able to capture the viewers attention and communicate the purpose of the map, and by adding italic and underline effects with the zip codes, I was able to take advantage of the principles of similarity and proximity to highlight the focus of the map, the zip codes within Hillsborough County only. White text for the zip codes worked well in terms of visibility, and black text on a white background for the title provides good contrast.</li>
+<li>Using text labels for the zip codes in combination with adding a color layer that represented the ‘count’ column as a y-axis variable, allowed me to create a heat map color scheme that not only added a count legend for the number of schools per zip code but also made each zip code filled in with a variable color from green to red with the red zip code standing out from the rest and truly highlighting the zip code with the most schools. This also helped with proximity and grouping patterns to show where the school count had the most density per zip code. It displays the pattern of green zip codes surrounding the red zip code in the center, and the yellow zip codes seem to be directly north and south of the red zip code in the center.</li>
+<li>I chose to use a satellite image for the background, as the backgrounds with nothing but grey shading did not include enough detail, and the backgrounds with the streets and highways included too much unnecessary detail that cluttered the map. The satellite image seemed to relay the message clearly without complicating the picture.</li>
+</ol>
 
 
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-date-sort="1756699200000" data-listing-file-modified-sort="1756751360071" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="626">
-<div class="thumbnail">
-<p><a href="./posts/Module 2/index.html" class="no-external"></a></p><a href="./posts/Module 2/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\Module 2\images\Sheet 1-01.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/Module 2/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Module 2/index.html" class="no-external">Module # 2: My Geographic Map of Hillsborough County Public Schools by Zipcode</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/Module 2/index.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/Module 2/index.html" class="no-external">This is my second post for my LIS4317 Visual Analytics blog. Welcome!</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/Module 2/index.html" class="no-external">
-<div class="listing-date">
-Sep 1, 2025
-</div>
-<div class="listing-author">
-Robert Walsh
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-listing-date-sort="1756008000000" data-listing-file-modified-sort="1756493222695" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="281">
-<div class="thumbnail">
-<p><a href="./posts/Module 1 Assignment 1/index.html" class="no-external"></a></p><a href="./posts/Module 1 Assignment 1/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\Module 1 Assignment 1\worldPopulation750.jpg"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/Module 1 Assignment 1/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Module 1 Assignment 1/index.html" class="no-external">Module # 1: Assignment # 1:</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/Module 1 Assignment 1/index.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/Module 1 Assignment 1/index.html" class="no-external">This is the first post in my LIS4317 Visual Analytics blog. Welcome!</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/Module 1 Assignment 1/index.html" class="no-external">
-<div class="listing-date">
-Aug 24, 2025
-</div>
-<div class="listing-author">
-Robert Walsh
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
