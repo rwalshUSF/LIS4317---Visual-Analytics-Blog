@@ -1,0 +1,21 @@
+---
+title: "Module # 3: Refined Map with Color"
+author: "Robert Walsh"
+date: "2025-09-08"
+---
+
+This is my third post for my LIS4317 Visual Analytics blog. Welcome!
+
+For this assignment, tasks #1-5, I was required to download Adobe Illustrator and open the map I created in Module 2. Then apply a Sequential color palette to highlight magnitude. I refined the original map by adding vector elements using the Shape and Graph tools. This included labels, legends, and a clear title to explain the color scale and symbols. I saved the editable file and exported a high-resolution .png image for screens.
+
+This is my updated map (click the map for a larger image):
+
+[![](Module3.png)](Module3.png)
+
+Task #6
+
+The color choices I made included making the water in the map a lighter blue for clarity and aesthetics. The lighter blue represents water well and matches the "light map theme" colors I chose to represent the land on the map. Using the Gestalt principle of Similarity, I chose to use light green for the areas on the map that are forest or woodland areas and tan for developed land. I started with a heat map that portrayed the zip codes with more schools as red and less schools as green, however, I switched the color theme for the zip code shapes to a sequential palette from dark blue to light blue as I felt this would represent the density better, and the other colors (green through red) would have worked better for a temperature study or visualization.
+
+I added a larger main title that is easier to read, and enlarged the legend with appropriate labels to communicate the meaning of the colors and symbols. The choice to keep the Zip Code boundaries outlined as county shapes follows the Gestalt principle of proximity to highlight the fact that the counties within Hillsborough County are the focus of the map, and I changed the text color to black for clarity. I also added the City names and labels along with some major roadways to give a better perspective of the area in focus.
+
+Finally, adding a vector graphic compass with "North" labeled on the map added the finishing touch, to clearly indicate the direction of the map and verify that the map is displayed in a specific orientation. This also helps clarify the density of the Zip Codes to present the message that the Zip Codes north and south of the Zip Code with the most schools contain more schools than those east and west of that county. 33610 has the most schools in it and that message seems clear. It is the only Zip Code with that "dark blue" color to represent the fact.
