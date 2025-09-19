@@ -1,0 +1,45 @@
+---
+title: "Module # 4: Time Series Visualization"
+author: "Robert Walsh"
+date: "2025-09-19"
+---
+
+This is my fourth post for my LIS4317 Visual Analytics blog. Welcome!
+
+Here is a link to my visualization in Tableau Public:
+
+<https://public.tableau.com/views/Module_04/Sheet1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link>
+
+This is the .png image of the visualization:
+
+![](images/Module_04_LIS4317.png)
+
+I selected the following variables to include in my analysis:
+
+- Rail(T/F)
+
+- Primary UZA Population
+
+- Year
+
+- Month
+
+- Total Collisions
+
+- Total Derailments
+
+- Total Events
+
+- Total Fatalities
+
+
+The reasons I selected these variables are as follows:
+
+I selected the variables Rail (T/F), Primary UZA Population, Year, Month, Total Collisions, Total Derailments, Total Events, and Total Fatalities to create a time series visualization in order to analyze patterns and trends in rail-related incidents over time.
+Including Year and Month allows for analysis over time and adding month gave me the option to zoom in on the data if necessary, which could be helpful for identifying seasonality, long-term trends, or sudden changes.
+The Rail (T/F) variable helped me differentiate between incidents involving rail systems and those that do not, providing a foundation for further comparative analysis if necessary.
+Primary UZA Population adds a demographic dimension, to explore how population size could possibly correlate with the frequency or severity of collisions.
+The collision related variables; Total Collisions, Total Derailments, Total Events, and Total Fatalities help analyze the scale and impact of safety issues, helping to assess events over time.
+Together, I think these variables provide data for an in depth analysis/understanding of rail safety trends over time.
+
+The data reveals interesting patterns and information including a consistent increase in both collisions and fatalities over time, indicating a growing safety concern. Notably, 2020 saw a temporary drop in collisions, likely due to reduced rail traffic during the COVID-19 pandemic. Despite this decline, fatalities continued to rise that year, suggesting that the severity of incidents may have intensified.
