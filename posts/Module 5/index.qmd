@@ -1,0 +1,44 @@
+---
+title: "Module # 5: Create Your Own Visualizations assignment Plotly"
+author: "Robert Walsh"
+date: "2025-09-24"
+---
+
+This is my fifth post for my LIS4317 Visual Analytics blog. Welcome!
+
+Here is a link to my ordered bar chart visualization in Plotly:
+
+<https://chart-studio.plotly.com/~robertwalsh/1/>
+
+This is the .png image of the visualization:
+
+[![](images/_b_Average%20Position%20Over%20Time__b_.png)](images/_b_Average%20Position%20Over%20Time__b_.png)
+
+The following variables are included in my analysis from the provided .csv file:
+
+-   "A" (numeric observation count from 1-20)
+
+-   Average Position
+
+-   Time
+
+I selected this data set because it was provided for us to use in the Module 5 instructions. My design helps to visualize the data set by placing the twenty observations on the x-axis as an ordered list of unique events. Then, the two main variables in focus can be measured side by side to evaluate how the measurements change simultaneously over the course of the twenty measurements/observations. This helps the viewer visualize the "Average Position" over "Time" by using a bar chart to see the numeric values labeled on the y-axis. The story that the visualization tells is that on the first observation, the position was at 0.17 when the time was zero, and over the course of the twenty observations, the position increased steadily up to 1 by 3.8 units of time. The strengths of this design lie in its ability to display colorful bars (ranking) representing data side by side and observe how they change over time. A potential weakness may be the lack of more comprehensive data or more robust events/observations.
+
+Here is a link to my pie chart visualization in Plotly:
+
+<https://chart-studio.plotly.com/~robertwalsh/3/>
+
+This is the .png image of the visualization:
+
+[![](images/_b_Average Position From 0.17 to 1 Over Time_br_(3.8 time units in increments of 0.2)__b_.png)](images/_b_Average Position From 0.17 to 1 Over Time_br_(3.8 time units in increments of 0.2)__b_.png)
+
+The same variables included in my analysis from the provided .csv file:
+
+-   "A" (numeric observation count from 1-20)
+
+-   Average Position
+
+-   Time
+
+I used the same data set because it was provided for us to use in the Module 5 instructions. My design helps to visualize the data set by placing the twenty observations labeled on the right as a legend for twenty unique events. Then, the two main variables in focus can be measured in each slice to evaluate how the measurements change simultaneously over the course of time per measurement/event. This helps the viewer visualize the "Average Position" over "Time" by using a pie chart to see the numeric values for time and average position as a slice of the whole time interval 0-3.8. The story that the visualization tells is that on the first observation, the position was at 0.17 when the time was zero, and over the course of the twenty observations, 0.2 units at a time (each slice), the position increased steadily up to 1 over 3.8 units of time. The strengths of this design lie in its ability to display colorful slices (part-to-whole) representing data together to observe how they changed over time. A potential weakness may be the lack of control to change what each slice represents. The percentage was locked to represent the absolute value of the time number and I could not figure out how to specify certain time intervals for each slice, such as the percentage of time from 0-1.8, or the percentage of time that the position was between 
+0.17 and 0.60.
