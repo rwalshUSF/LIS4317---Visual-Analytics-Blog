@@ -1,0 +1,23 @@
+---
+title: "Module # 6: Visual Differences & Deviation Analysis via R programming"
+author: "Robert Walsh"
+date: "2025-09-30"
+---
+
+This is my sixth post for my LIS4317 Visual Analytics blog. Welcome!
+
+Here is the .png image of the visualization:
+
+[![](LIS4317_Mod6.png)](LIS4317_Mod6.png)
+
+For this assignment, I chose to use the “mtcars” dataset in RStudio because I’ve always found automotive data engaging and informative. As I explored the dataset, I focused on variables that could help visualize both comparisons and deviations—specifically using miles per gallon (mpg) as a central metric. I created a bar chart to highlight how each vehicle’s mpg compared to the dataset's mean mpg. This allowed me to spot clear differences in fuel efficiency among vehicles and identify which cars performed above or below the average benchmark. The bar chart revealed that mpg values ranged from about -9.69 to +13.81 from the mean, indicating a notable divergence among the vehicles.
+
+While the visualization did effectively expose trends in fuel efficiency, it posed a few challenges during creation. Reordering the x-axis by mpg values and flipping the coordinates to make vehicle names more readable required extra effort. It was particularly tricky to ensure the bars were sorted in descending order based on their deviation from the mean, with the vehicle furthest below average at the bottom. According to the principles discussed by Few (2009) "Deviation analysis does'nt require fancy visualizations. The two best graphs for displaying deviations are bar graphs and line graphs." (p. 204) and Yau (2011) "Across two variables, it is a little more difficult, but it's still doable" (p. 228), my chart generally aligned with good data visualization practices—particularly in clarity and the effective use of categorical and quantitative variables. However, some fine-tuning was necessary to meet the principles of intuitive design and visual hierarchy, which made the process both insightful and a valuable learning experience.
+
+References:
+
+
+Few, S. (2009). Now you see it: simple visualization techniques for quantitative analysis. Analytics Press.
+
+
+Yau, N. C. (2011). Visualize this: the flowing data guide to design, visualization, and statistics (1st edition). Wiley Publishing Inc.
