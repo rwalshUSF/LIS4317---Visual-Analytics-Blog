@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Robert Walsh">
+<meta name="dcterms.date" content="2025-10-03">
 
-<title>LIS4317 - Visual Analytics Blog</title>
+<title>Module # 7: Visualizing Distributions in R – LIS4317 - Visual Analytics Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +25,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-0de45b8b5f35a93596f1d788d60c4c11.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-bf0e22026d841e37432379943e210428.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0de45b8b5f35a93596f1d788d60c4c11.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-bf0e22026d841e37432379943e210428.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,77 +68,19 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">LIS4317 - Visual Analytics Blog</span>
     </a>
   </div>
@@ -149,7 +91,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About Me</span></a>
   </li>  
 </ul>
@@ -162,238 +104,59 @@ window.Quarto = {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page">
-      <h1 class="title">LIS4317 - Visual Analytics Blog</h1>
+    <div class="quarto-title column-body">
+      <h1 class="title">Module # 7: Visualizing Distributions in R</h1>
                       </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page">
+  <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Robert Walsh </p>
+            </div>
+    </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">October 3, 2025</p>
+      </div>
+    </div>
     
       
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content quarto-banner-title-block column-page" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
+<p>This is my seventh post for my LIS4317 Visual Analytics blog. Welcome!</p>
+<p>Here is the .png image of the visualization:</p>
+<p><a href="LIS4317_mod_7.png"><img src="LIS4317_mod_7.png" class="img-fluid"></a></p>
+<p>For this assignment, I chose to use the “mtcars” dataset again in RStudio because I was curious to explore specific variables in the dataset. As I further studied the dataset, expanding on last week’s visual differences and deviation analysis, I focused on multiple variables (HP “horsepower”, CYL “cylinders”, VS “engine type”) that could help build upon the visualization of both variable comparisons and deviation analysis, by studying the spread, measures of central tendency, and the shape of the distributions. My design choices aligned with Few’s recommendations, which state that “three characteristics summarize the distribution of a set of values when the distribution is displayed visually: spread, center, and shape” (Few, 2009, p.&nbsp;216). This time, using horsepower (HP) as a central quantitative metric, I created three histograms to provide a faceted view of how the data from the horsepower variable (HP) is distributed, particularly regarding two more variables: the number of cylinders that the vehicle has (CYL), and if the car has a straight or slant “V” style engine (VS). To visualize the spread, or distribution of the data, I plotted the histograms together on the same facet by number of cylinders to overlay the distributions of the different engine types on top of one another. The design choices to set the x-axis intervals/breaks individually align with Yau’s recommendation that “the number of breaks you should choose depends on the data that you might visualize” (Yau, 2011, p.&nbsp;207). To illustrate the shape of the distributions, I added a line to show the normal distribution of each type using the density function, along with a dashed vertical line to illustrate the mean as a measure of central tendency value for each engine type.</p>
+<p>This allowed me to spot apparent differences in horsepower among 4-, 6-, and 8-cylinder vehicle groups and identify which engine types performed above or below the average benchmark.</p>
+<p>The histograms for the four-cylinder cars revealed that horsepower values ranged from approximately 50 to 115, indicating a notable divergence among the cars. There was only one vehicle with a slant “V” engine and four cylinders, so the density function could not be computed, and the mean was simply the single value, 90. The four-cylinder cars with a straight engine had a mean of around 82 horsepower, with a wide distribution, considerable variance, and even a gap in the middle between 70 and 85 horsepower, as indicated by the histogram and density curve. Few (2009) points out that “a gap in the middle group should arouse our curiosity. What could account for the lack of data near the middle of the distribution?” (p.&nbsp;223). The shape of the distribution would be pretty symmetrical if the data were depicted together; however, by splitting the data up by engine type, the mean of each reveals an interesting fact, that the slant “V” type engine produces more horsepower than the mean value for the “straight” engine types in the four-cylinder class.</p>
+<p>The histograms for the six-cylinder cars revealed that horsepower values ranged from approximately 105 to 175, with most values closer to the mean, and a higher, thinner distribution line indicating less variance in most of the data. The visualization also shows another notable divergence among the vehicles, primarily due to another outlier in the slant “V” class. The mean for the slant “V” engine and six cylinders is approximately. 132, with an outlier at 175 skewing the data to the right. Few (2009) mentions that “the mean is highly susceptible to outliers; a single outlier can shift the mean significantly in the direction of that outlier” (p.&nbsp;244), and this is a perfect example of that phenomenon. The mean value for the six-cylinder cars with a straight engine is around 115; therefore, once again, it reveals an interesting fact/pattern that the slant “V” type engine produces more horsepower than the mean value for the “straight” engine types in the six-cylinder class as well.</p>
+<p>The histogram for the eight-cylinder vehicles only represents slant “V” class engine types because there are no cars with a “straight” engine type in the eight-cylinder class within this dataset. The distribution ranges from 150 to 330 horsepower and is relatively symmetrical, except for another outlier that skews the distribution to the right once again. This reveals a pattern in the data that the slant “V” type engines may have specific vehicles with a significantly higher horsepower than the rest of the cars in that group. There is a wide distribution, considerable variance, and a mean horsepower of 210.</p>
+<p>Overall, I do agree with Few’s critique of how distributions are commonly presented in visual analytics, especially when he notes that “scientists and engineers analyze distributions routinely, but other organizations, especially businesses, tend to ignore them” (Few, 2009, p.&nbsp;211). With a strategic combination of solid statistical summaries and visualizations that show distribution patterns, professionals in many fields/disciplines can learn from their data and see things that they may not have noticed in the numbers alone.</p>
+<p>References:</p>
+<p>Few, S. (2009). Now you see it: simple visualization techniques for quantitative analysis. Analytics Press.</p>
+<p>Yau, N. C. (2011). Visualize this: the flowing data guide to design, visualization, and statistics (1st edition). Wiley Publishing Inc.</p>
 
 
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-date-sort="1759464000000" data-listing-file-modified-sort="1759500881013" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="873">
-<div class="thumbnail">
-<p><a href="./posts/Module 7/index.html" class="no-external"></a></p><a href="./posts/Module 7/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\Module 7\LIS4317_mod_7.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/Module 7/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Module 7/index.html" class="no-external">Module # 7: Visualizing Distributions in R</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/Module 7/index.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/Module 7/index.html" class="no-external">This is my seventh post for my LIS4317 Visual Analytics blog. Welcome!</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/Module 7/index.html" class="no-external">
-<div class="listing-date">
-Oct 3, 2025
-</div>
-<div class="listing-author">
-Robert Walsh
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-listing-date-sort="1759204800000" data-listing-file-modified-sort="1759266471296" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="382">
-<div class="thumbnail">
-<p><a href="./posts/Module 6/index.html" class="no-external"></a></p><a href="./posts/Module 6/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\Module 6\LIS4317_Mod6.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/Module 6/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Module 6/index.html" class="no-external">Module # 6: Visual Differences &amp; Deviation Analysis via R programming</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/Module 6/index.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/Module 6/index.html" class="no-external">This is my sixth post for my LIS4317 Visual Analytics blog. Welcome!</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/Module 6/index.html" class="no-external">
-<div class="listing-date">
-Sep 30, 2025
-</div>
-<div class="listing-author">
-Robert Walsh
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-listing-date-sort="1758686400000" data-listing-file-modified-sort="1758725014835" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="540">
-<div class="thumbnail">
-<p><a href="./posts/Module 5/index.html" class="no-external"></a></p><a href="./posts/Module 5/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\Module 5\images\_b_Average Position Over Time__b_.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/Module 5/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Module 5/index.html" class="no-external">Module # 5: Create Your Own Visualizations assignment Plotly</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/Module 5/index.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/Module 5/index.html" class="no-external">This is my fifth post for my LIS4317 Visual Analytics blog. Welcome!</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/Module 5/index.html" class="no-external">
-<div class="listing-date">
-Sep 24, 2025
-</div>
-<div class="listing-author">
-Robert Walsh
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-listing-date-sort="1758254400000" data-listing-file-modified-sort="1758291305819" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="279">
-<div class="thumbnail">
-<p><a href="./posts/Module 4/index.html" class="no-external"></a></p><a href="./posts/Module 4/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\Module 4\images\Module_04_LIS4317.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/Module 4/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Module 4/index.html" class="no-external">Module # 4: Time Series Visualization</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/Module 4/index.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/Module 4/index.html" class="no-external">This is my fourth post for my LIS4317 Visual Analytics blog. Welcome!</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/Module 4/index.html" class="no-external">
-<div class="listing-date">
-Sep 19, 2025
-</div>
-<div class="listing-author">
-Robert Walsh
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-listing-date-sort="1757304000000" data-listing-file-modified-sort="1757364854584" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="427">
-<div class="thumbnail">
-<p><a href="./posts/Module 3/index.html" class="no-external"></a></p><a href="./posts/Module 3/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\Module 3\Module3.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/Module 3/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Module 3/index.html" class="no-external">Module # 3: Refined Map with Color</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/Module 3/index.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/Module 3/index.html" class="no-external">This is my third post for my LIS4317 Visual Analytics blog. Welcome!</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/Module 3/index.html" class="no-external">
-<div class="listing-date">
-Sep 8, 2025
-</div>
-<div class="listing-author">
-Robert Walsh
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-listing-date-sort="1756699200000" data-listing-file-modified-sort="1756813082344" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="634">
-<div class="thumbnail">
-<p><a href="./posts/Module 2/index.html" class="no-external"></a></p><a href="./posts/Module 2/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\Module 2\Sheet 1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/Module 2/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Module 2/index.html" class="no-external">Module # 2: My Geographic Map of Hillsborough County Public Schools by Zipcode</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/Module 2/index.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/Module 2/index.html" class="no-external">This is my second post for my LIS4317 Visual Analytics blog. Welcome!</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/Module 2/index.html" class="no-external">
-<div class="listing-date">
-Sep 1, 2025
-</div>
-<div class="listing-author">
-Robert Walsh
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="6" data-listing-date-sort="1756008000000" data-listing-file-modified-sort="1756751593065" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="281">
-<div class="thumbnail">
-<p><a href="./posts/Module 1 Assignment 1/index.html" class="no-external"></a></p><a href="./posts/Module 1 Assignment 1/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\Module 1 Assignment 1\worldPopulation750.jpg"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/Module 1 Assignment 1/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Module 1 Assignment 1/index.html" class="no-external">Module # 1: Assignment # 1:</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/Module 1 Assignment 1/index.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/Module 1 Assignment 1/index.html" class="no-external">This is the first post in my LIS4317 Visual Analytics blog. Welcome!</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/Module 1 Assignment 1/index.html" class="no-external">
-<div class="listing-date">
-Aug 24, 2025
-</div>
-<div class="listing-author">
-Robert Walsh
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

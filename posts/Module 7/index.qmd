@@ -1,0 +1,30 @@
+---
+title: "Module # 7: Visualizing Distributions in R"
+author: "Robert Walsh"
+date: "2025-10-03"
+---
+
+This is my seventh post for my LIS4317 Visual Analytics blog. Welcome!
+
+Here is the .png image of the visualization:
+
+[![](LIS4317_mod_7.png)](LIS4317_mod_7.png)
+
+For this assignment, I chose to use the “mtcars” dataset again in RStudio because I was curious to explore specific variables in the dataset. As I further studied the dataset, expanding on last week's visual differences and deviation analysis, I focused on multiple variables (HP “horsepower”, CYL “cylinders”, VS “engine type”) that could help build upon the visualization of both variable comparisons and deviation analysis, by studying the spread, measures of central tendency, and the shape of the distributions. My design choices aligned with Few’s recommendations, which state that “three characteristics summarize the distribution of a set of values when the distribution is displayed visually: spread, center, and shape” (Few, 2009, p. 216). This time, using horsepower (HP) as a central quantitative metric, I created three histograms to provide a faceted view of how the data from the horsepower variable (HP) is distributed, particularly regarding two more variables: the number of cylinders that the vehicle has (CYL), and if the car has a straight or slant “V” style engine (VS). To visualize the spread, or distribution of the data, I plotted the histograms together on the same facet by number of cylinders to overlay the distributions of the different engine types on top of one another. The design choices to set the x-axis intervals/breaks individually align with Yau’s recommendation that “the number of breaks you should choose depends on the data that you might visualize” (Yau, 2011, p. 207). To illustrate the shape of the distributions, I added a line to show the normal distribution of each type using the density function, along with a dashed vertical line to illustrate the mean as a measure of central tendency value for each engine type.
+
+This allowed me to spot apparent differences in horsepower among 4-, 6-, and 8-cylinder vehicle groups and identify which engine types performed above or below the average benchmark.
+
+The histograms for the four-cylinder cars revealed that horsepower values ranged from approximately 50 to 115, indicating a notable divergence among the cars. There was only one vehicle with a slant “V” engine and four cylinders, so the density function could not be computed, and the mean was simply the single value, 90. The four-cylinder cars with a straight engine had a mean of around 82 horsepower, with a wide distribution, considerable variance, and even a gap in the middle between 70 and 85 horsepower, as indicated by the histogram and density curve. Few (2009) points out that “a gap in the middle group should arouse our curiosity. What could account for the lack of data near the middle of the distribution?” (p. 223). The shape of the distribution would be pretty symmetrical if the data were depicted together; however, by splitting the data up by engine type, the mean of each reveals an interesting fact, that the slant “V” type engine produces more horsepower than the mean value for the “straight” engine types in the four-cylinder class.
+
+The histograms for the six-cylinder cars revealed that horsepower values ranged from approximately 105 to 175, with most values closer to the mean, and a higher, thinner distribution line indicating less variance in most of the data. The visualization also shows another notable divergence among the vehicles, primarily due to another outlier in the slant “V” class. The mean for the slant “V” engine and six cylinders is approximately. 132, with an outlier at 175 skewing the data to the right. Few (2009) mentions that “the mean is highly susceptible to outliers; a single outlier can shift the mean significantly in the direction of that outlier” (p. 244), and this is a perfect example of that phenomenon. The mean value for the six-cylinder cars with a straight engine is around 115; therefore, once again, it reveals an interesting fact/pattern that the slant “V” type engine produces more horsepower than the mean value for the “straight” engine types in the six-cylinder class as well.
+
+The histogram for the eight-cylinder vehicles only represents slant “V” class engine types because there are no cars with a “straight” engine type in the eight-cylinder class within this dataset. The distribution ranges from 150 to 330 horsepower and is relatively symmetrical, except for another outlier that skews the distribution to the right once again. This reveals a pattern in the data that the slant “V” type engines may have specific vehicles with a significantly higher horsepower than the rest of the cars in that group. There is a wide distribution, considerable variance, and a mean horsepower of 210.
+
+Overall, I do agree with Few’s critique of how distributions are commonly presented in visual analytics, especially when he notes that “scientists and engineers analyze distributions routinely, but other organizations, especially businesses, tend to ignore them” (Few, 2009, p. 211). With a strategic combination of solid statistical summaries and visualizations that show distribution patterns, professionals in many fields/disciplines can learn from their data and see things that they may not have noticed in the numbers alone.
+
+References:
+
+Few, S. (2009). Now you see it: simple visualization techniques for quantitative analysis. Analytics Press.
+
+Yau, N. C. (2011). Visualize this: the flowing data guide to design, visualization, and statistics (1st edition). Wiley Publishing Inc.
+
