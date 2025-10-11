@@ -1,0 +1,23 @@
+---
+title: "Module # 8: Correlation Analysis and ggplot2"
+author: "Robert Walsh"
+date: "2025-10-11"
+---
+
+This is my eighth post for my LIS4317 Visual Analytics blog. Welcome!
+
+Here is the .png image of the visualization:
+
+[![](corr.png)](corr.png)
+
+In this analysis, I used the mtcars data set to explore the correlation relationships between the variable car weight (wt) and three other key automotive variables: miles per gallon (mpg), horsepower (hp), and engine displacement (disp). I also added a color aesthetic to visualize and observe group-level patterns across the data; the number of cylinders that the vehicle has, and I used the size aesthetic to give a visual representation of how fast the vehicle can go, by having faster quarter mile times in smaller points and longer quarter mile times in smaller points. The data was visualized using ggplot2 in R, using a faceted scatter plot approach with linear regression lines. Each facet represented a different dependent variable, allowing for side-by-side comparison while using a consistent x-axis (weight).
+
+The visualizations revealed distinct patterns. A strong negative correlation was observed between weight and mpg, indicating that heavier cars tend to be less fuel efficient. A positive correlation between weight and displacement suggested that heavier vehicles typically have larger engines. The relationship between weight and horsepower was less consistent, showing more variation across different cylinder groups. It was also interesting to see that larger engines, with more cylinders and horsepower, did not always result in a faster quarter mile. Faceting allowed these relationships to be examined independently, improving interpretation, clarity, and reducing visual clutter.
+
+This design aligned with Stephen Few’s data visualization principles, emphasizing clarity, minimalism, and function over form, "it is perhaps easier in some cases to see the shapes formed by the entire set of values in a single variable and to compare the overall shape of one variable to another" (Few, 2009, p. 265). The use of a "neutral color scheme, optimizing aspect ratio and quantitative scales, and using trend lines to enhance perception of the correlations shape, strength, and outliers" (Few, 2009, p. 266) helped direct focus to the data itself, rather than decorative elements. Yau’s recommendations; "now that you've plotted two variable against each other, the obvious next step is to compare other variables" (p. 188) were especially helpful in structuring the layout to reduce cognitive overload. Overall, applying these best practices resulted in a visualization that was both informative and understandable.
+
+References:
+
+Few, S. (2009). Now you see it: simple visualization techniques for quantitative analysis. Analytics Press.
+
+Yau, N. C. (2011). Visualize this: the flowing data guide to design, visualization, and statistics (1st edition). Wiley Publishing Inc.
