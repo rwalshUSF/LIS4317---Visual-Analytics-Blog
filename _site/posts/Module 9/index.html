@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Robert Walsh">
+<meta name="dcterms.date" content="2025-10-18">
 
-<title>LIS4317 - Visual Analytics Blog</title>
+<title>Module # 9: Visualizing Multivariate Data with ggplot2 &amp; Corrgram – LIS4317 - Visual Analytics Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +25,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-0de45b8b5f35a93596f1d788d60c4c11.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-bf0e22026d841e37432379943e210428.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0de45b8b5f35a93596f1d788d60c4c11.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-bf0e22026d841e37432379943e210428.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,77 +68,19 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">LIS4317 - Visual Analytics Blog</span>
     </a>
   </div>
@@ -149,7 +91,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About Me</span></a>
   </li>  
 </ul>
@@ -162,294 +104,56 @@ window.Quarto = {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page">
-      <h1 class="title">LIS4317 - Visual Analytics Blog</h1>
+    <div class="quarto-title column-body">
+      <h1 class="title">Module # 9: Visualizing Multivariate Data with ggplot2 &amp; Corrgram</h1>
                       </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page">
+  <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Robert Walsh </p>
+            </div>
+    </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">October 18, 2025</p>
+      </div>
+    </div>
     
       
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content quarto-banner-title-block column-page" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
+<p>This is my ninth post for my LIS4317 Visual Analytics blog. Welcome!</p>
+<p>Here is the .png image of the visualization:</p>
+<p><a href="mod9MV.png"><img src="mod9MV.png" class="img-fluid"></a></p>
+<p>In this analysis, I used the ‘BreastCancer’ data set from the ‘mlbench’ package to explore the patterns, groupings, outliers, and correlations in breast cancer data sets that emerge only when multiple variables are viewed together. Using multivariate visualization helps focus on representing and interpreting complex relationships among three or more variables simultaneously; therefore using this data set allowed me to use real-world data to detect co-variation, conditional trends, and outliers between multiple interacting variables like ‘Cl.thickness’ Clump Thickness, ‘Cell.size’ Uniformity of Cell Size, ‘Cell.shape’ Uniformity of Cell Shape, ‘Marg.adhesion’ Marginal Adhesion, and ‘Epith.c.size’ Single Epithelial Cell Size. I then grouped the variables and their correlation statistics by the ‘Class’ which included two factors, “benign” or “malignant”.</p>
+<p>I was able to visualize very interesting relationships between the variables, including a strong positive correlation between all of the variables, with an interesting exception, the correlation between Marginal Adhesion and Clump Thickness, which actually turns negative for the malignant Class. The insight gained from this visualization includes the possibility that the data uncovers a trend, that as Clump Thickness increases, the Marginal Adhesion decreases, and also that as any other variable increases, the correlated variable seems to increase as well.</p>
+<p>In this case multivariate visualization was effective for this data because it helped to understand the complex relationships between specific measurements related to breast cancer research on the cells and their attributes in colorful, graphical form. I applied several design principles discussed in this module including:</p>
+<p>1 - alignment and proximity, by ensuring that every element has some connection with another element on the graph, and placing similar elements together, I created a sharper, more ordered design. In this case, the diagonal cells of the correlation matrix were density charts to get a quick view of the distribution proportions. The scatter plots filled the cells below the diagonal, and the correlation statistics filled the cells above the diagonal. This was done with ggpairs ‘lower’, ‘diag’, and ‘upper’ arguments.</p>
+<p>2 - contrast, by adding a color layer, utilizing ggplot2, I was able to separate the values, density curves, and plotted points that each of the charts in the matrix displayed. The variable selected to add the color layer in ggplot2 was the class factor, which had two very distinct and important levels, “benign” or “malignant”. These values are complete opposites in the data study and medical terminology, therefore, separating the data and values by these terms had a crucial part in organizing the data on the page, having a strong impact.</p>
+<p>3 - balance, by combining the alignment, proximity, and contrast as mentioned above, the balance provided stability and structure to the design. The correlation matrix was symmetrical about the diagonal line, where the weight of the elements on both halves of the matrix were balanced. The correlation statistics took up an equal amount of cells as the scatter plots.</p>
 
 
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-date-sort="1760760000000" data-listing-file-modified-sort="1760801569605" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="490">
-<div class="thumbnail">
-<p><a href="./posts/Module 9/index.html" class="no-external"></a></p><a href="./posts/Module 9/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\Module 9\mod9MV.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/Module 9/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Module 9/index.html" class="no-external">Module # 9: Visualizing Multivariate Data with ggplot2 &amp; Corrgram</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/Module 9/index.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/Module 9/index.html" class="no-external">This is my ninth post for my LIS4317 Visual Analytics blog. Welcome!</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/Module 9/index.html" class="no-external">
-<div class="listing-date">
-Oct 18, 2025
-</div>
-<div class="listing-author">
-Robert Walsh
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-listing-date-sort="1760155200000" data-listing-file-modified-sort="1760199790901" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="415">
-<div class="thumbnail">
-<p><a href="./posts/Module 8/index.html" class="no-external"></a></p><a href="./posts/Module 8/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\Module 8\corr.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/Module 8/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Module 8/index.html" class="no-external">Module # 8: Correlation Analysis and ggplot2</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/Module 8/index.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/Module 8/index.html" class="no-external">This is my eighth post for my LIS4317 Visual Analytics blog. Welcome!</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/Module 8/index.html" class="no-external">
-<div class="listing-date">
-Oct 11, 2025
-</div>
-<div class="listing-author">
-Robert Walsh
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-listing-date-sort="1759464000000" data-listing-file-modified-sort="1759500881013" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="873">
-<div class="thumbnail">
-<p><a href="./posts/Module 7/index.html" class="no-external"></a></p><a href="./posts/Module 7/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\Module 7\LIS4317_mod_7.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/Module 7/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Module 7/index.html" class="no-external">Module # 7: Visualizing Distributions in R</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/Module 7/index.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/Module 7/index.html" class="no-external">This is my seventh post for my LIS4317 Visual Analytics blog. Welcome!</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/Module 7/index.html" class="no-external">
-<div class="listing-date">
-Oct 3, 2025
-</div>
-<div class="listing-author">
-Robert Walsh
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-listing-date-sort="1759204800000" data-listing-file-modified-sort="1759266471296" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="382">
-<div class="thumbnail">
-<p><a href="./posts/Module 6/index.html" class="no-external"></a></p><a href="./posts/Module 6/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\Module 6\LIS4317_Mod6.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/Module 6/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Module 6/index.html" class="no-external">Module # 6: Visual Differences &amp; Deviation Analysis via R programming</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/Module 6/index.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/Module 6/index.html" class="no-external">This is my sixth post for my LIS4317 Visual Analytics blog. Welcome!</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/Module 6/index.html" class="no-external">
-<div class="listing-date">
-Sep 30, 2025
-</div>
-<div class="listing-author">
-Robert Walsh
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-listing-date-sort="1758686400000" data-listing-file-modified-sort="1758725014835" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="540">
-<div class="thumbnail">
-<p><a href="./posts/Module 5/index.html" class="no-external"></a></p><a href="./posts/Module 5/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\Module 5\images\_b_Average Position Over Time__b_.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/Module 5/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Module 5/index.html" class="no-external">Module # 5: Create Your Own Visualizations assignment Plotly</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/Module 5/index.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/Module 5/index.html" class="no-external">This is my fifth post for my LIS4317 Visual Analytics blog. Welcome!</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/Module 5/index.html" class="no-external">
-<div class="listing-date">
-Sep 24, 2025
-</div>
-<div class="listing-author">
-Robert Walsh
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-listing-date-sort="1758254400000" data-listing-file-modified-sort="1758291305819" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="279">
-<div class="thumbnail">
-<p><a href="./posts/Module 4/index.html" class="no-external"></a></p><a href="./posts/Module 4/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\Module 4\images\Module_04_LIS4317.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/Module 4/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Module 4/index.html" class="no-external">Module # 4: Time Series Visualization</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/Module 4/index.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/Module 4/index.html" class="no-external">This is my fourth post for my LIS4317 Visual Analytics blog. Welcome!</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/Module 4/index.html" class="no-external">
-<div class="listing-date">
-Sep 19, 2025
-</div>
-<div class="listing-author">
-Robert Walsh
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="6" data-listing-date-sort="1757304000000" data-listing-file-modified-sort="1757364854584" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="427">
-<div class="thumbnail">
-<p><a href="./posts/Module 3/index.html" class="no-external"></a></p><a href="./posts/Module 3/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\Module 3\Module3.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/Module 3/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Module 3/index.html" class="no-external">Module # 3: Refined Map with Color</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/Module 3/index.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/Module 3/index.html" class="no-external">This is my third post for my LIS4317 Visual Analytics blog. Welcome!</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/Module 3/index.html" class="no-external">
-<div class="listing-date">
-Sep 8, 2025
-</div>
-<div class="listing-author">
-Robert Walsh
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="7" data-listing-date-sort="1756699200000" data-listing-file-modified-sort="1756813082344" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="634">
-<div class="thumbnail">
-<p><a href="./posts/Module 2/index.html" class="no-external"></a></p><a href="./posts/Module 2/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\Module 2\Sheet 1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/Module 2/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Module 2/index.html" class="no-external">Module # 2: My Geographic Map of Hillsborough County Public Schools by Zipcode</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/Module 2/index.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/Module 2/index.html" class="no-external">This is my second post for my LIS4317 Visual Analytics blog. Welcome!</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/Module 2/index.html" class="no-external">
-<div class="listing-date">
-Sep 1, 2025
-</div>
-<div class="listing-author">
-Robert Walsh
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="8" data-listing-date-sort="1756008000000" data-listing-file-modified-sort="1756751593065" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="281">
-<div class="thumbnail">
-<p><a href="./posts/Module 1 Assignment 1/index.html" class="no-external"></a></p><a href="./posts/Module 1 Assignment 1/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\Module 1 Assignment 1\worldPopulation750.jpg"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/Module 1 Assignment 1/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Module 1 Assignment 1/index.html" class="no-external">Module # 1: Assignment # 1:</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/Module 1 Assignment 1/index.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/Module 1 Assignment 1/index.html" class="no-external">This is the first post in my LIS4317 Visual Analytics blog. Welcome!</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/Module 1 Assignment 1/index.html" class="no-external">
-<div class="listing-date">
-Aug 24, 2025
-</div>
-<div class="listing-author">
-Robert Walsh
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

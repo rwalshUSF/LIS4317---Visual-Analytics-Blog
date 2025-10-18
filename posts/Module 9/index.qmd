@@ -1,0 +1,23 @@
+---
+title: "Module # 9: Visualizing Multivariate Data with ggplot2 & Corrgram"
+author: "Robert Walsh"
+date: "2025-10-18"
+---
+
+This is my ninth post for my LIS4317 Visual Analytics blog. Welcome!
+
+Here is the .png image of the visualization:
+
+[![](mod9MV.png)](mod9MV.png)
+
+In this analysis, I used the 'BreastCancer' data set from the 'mlbench' package to explore the patterns, groupings, outliers, and correlations in breast cancer data sets that emerge only when multiple variables are viewed together. Using multivariate visualization helps focus on representing and interpreting complex relationships among three or more variables simultaneously; therefore using this data set allowed me to use real-world data to detect co-variation, conditional trends, and outliers between multiple interacting variables like 'Cl.thickness' Clump Thickness, 'Cell.size' Uniformity of Cell Size, 'Cell.shape' Uniformity of Cell Shape, 'Marg.adhesion' Marginal Adhesion, and 'Epith.c.size' Single Epithelial Cell Size. I then grouped the variables and their correlation statistics by the 'Class' which included two factors, "benign" or "malignant".
+
+I was able to visualize very interesting relationships between the variables, including a strong positive correlation between all of the variables, with an interesting exception, the correlation between Marginal Adhesion and Clump Thickness, which actually turns negative for the malignant Class. The insight gained from this visualization includes the possibility that the data uncovers a trend, that as Clump Thickness increases, the Marginal Adhesion decreases, and also that as any other variable increases, the correlated variable seems to increase as well.
+
+In this case multivariate visualization was effective for this data because it helped to understand the complex relationships between specific measurements related to breast cancer research on the cells and their attributes in colorful, graphical form. I applied several design principles discussed in this module including:
+
+1 - alignment and proximity, by ensuring  that every element has some connection with another element on the graph, and placing similar elements together, I created a sharper, more ordered design. In this case, the diagonal cells of the correlation matrix were density charts to get a quick view of the distribution proportions. The scatter plots filled the cells below the diagonal, and the correlation statistics filled the cells above the diagonal. This was done with ggpairs 'lower', 'diag', and 'upper' arguments.
+
+2 - contrast, by adding a color layer, utilizing ggplot2, I was able to separate the values, density curves, and plotted points that each of the charts in the matrix displayed. The variable selected to add the color layer in ggplot2 was the class factor, which had two very distinct and important levels, "benign" or "malignant". These values are complete opposites in the data study and medical terminology, therefore, separating the data and values by these terms had a crucial part in organizing the data on the page, having a strong impact.
+
+3 - balance, by combining the alignment, proximity, and contrast as mentioned above, the balance provided stability and structure to the design. The correlation matrix was symmetrical about the diagonal line, where the weight of the elements on both halves of the matrix were balanced. The correlation statistics took up an equal amount of cells as the scatter plots.
