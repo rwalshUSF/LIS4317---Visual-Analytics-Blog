@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Robert Walsh">
+<meta name="dcterms.date" content="2025-10-24">
 
-<title>LIS4317 - Visual Analytics Blog</title>
+<title>Module # 10: Time Series and Visualization – LIS4317 - Visual Analytics Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +22,59 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-0de45b8b5f35a93596f1d788d60c4c11.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-bf0e22026d841e37432379943e210428.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0de45b8b5f35a93596f1d788d60c4c11.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-bf0e22026d841e37432379943e210428.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,77 +102,19 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">LIS4317 - Visual Analytics Blog</span>
     </a>
   </div>
@@ -149,7 +125,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About Me</span></a>
   </li>  
 </ul>
@@ -162,350 +138,121 @@ window.Quarto = {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page">
-      <h1 class="title">LIS4317 - Visual Analytics Blog</h1>
+    <div class="quarto-title column-body">
+      <h1 class="title">Module # 10: Time Series and Visualization</h1>
                       </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page">
+  <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Robert Walsh </p>
+            </div>
+    </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">October 24, 2025</p>
+      </div>
+    </div>
     
       
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content quarto-banner-title-block column-page" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
+<p>This is my tenth post for my LIS4317 Visual Analytics blog. Welcome!</p>
+<p>For this assignment we were tasked with exploring time series visualization methods and techniques in R Studio using the ggplot2() package and the wide range of functions that are available. We also explored videos and readings that were assigned in the module. I chose to use the ‘AAPL.csv’ file by Onyshchak (2020) from Kaggle.com.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read csv file</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>AAPL<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">"AAPL.csv"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>AAPL<span class="sc">$</span>Date<span class="ot">&lt;-</span><span class="fu">as.Date</span>(AAPL<span class="sc">$</span>Date)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>AAPL<span class="ot">&lt;-</span>AAPL[<span class="dv">4816</span><span class="sc">:</span><span class="fu">dim</span>(AAPL)[<span class="dv">1</span>],]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>After reading the file, I had a look at the variables.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(AAPL)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Date                 Open               High               Low          
+ Min.   :2000-01-03   Min.   :  0.9279   Min.   :  0.9421   Min.   :  0.9086  
+ 1st Qu.:2005-01-27   1st Qu.:  5.0704   1st Qu.:  5.1656   1st Qu.:  4.9830  
+ Median :2010-02-18   Median : 30.1893   Median : 30.4086   Median : 29.7914  
+ Mean   :2010-02-16   Mean   : 62.3735   Mean   : 62.9946   Mean   : 61.7525  
+ 3rd Qu.:2015-03-11   3rd Qu.:101.5775   3rd Qu.:102.3775   3rd Qu.:100.6775  
+ Max.   :2020-04-01   Max.   :324.7400   Max.   :327.8500   Max.   :323.3500  
+     Close            Adj.Close            Volume         
+ Min.   :  0.9371   Min.   :  0.8135   Min.   :9.835e+06  
+ 1st Qu.:  5.0586   1st Qu.:  4.3910   1st Qu.:4.678e+07  
+ Median : 30.0971   Median : 26.1256   Median :8.639e+07  
+ Mean   : 62.3954   Mean   : 58.6034   Mean   :1.141e+08  
+ 3rd Qu.:101.6175   3rd Qu.: 94.2165   3rd Qu.:1.506e+08  
+ Max.   :327.2000   Max.   :327.2000   Max.   :1.855e+09  </code></pre>
+</div>
+</div>
+<p>I chose to use the ‘Date’ variable as the x-axis and the different price variables as the y-axis. Plotting the ‘Open’ price over time first to gain a compact description of the data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(AAPL,<span class="fu">aes</span>(<span class="at">x=</span>Date,<span class="at">y=</span>Open,<span class="at">group =</span> <span class="dv">1</span>))<span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"1 year"</span>, <span class="at">date_labels =</span> <span class="st">"%Y"</span>)<span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>))<span class="sc">+</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"AAPL Stock Price 2000-2021"</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">"Date"</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Opening Stock Price"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This gives a basic idea of the time series visualization of opening stock price vs.&nbsp;date. However, by adding a few layers, and adjusting some attributes, I was able to clean up the visualization to show a line for the changing volume in trading over time. GGplot() gives us control of the data visualization layers/attributes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> AAPL, <span class="fu">aes</span>(<span class="at">x =</span> Date, <span class="at">y =</span> Open<span class="sc">*</span><span class="dv">1000000</span>))<span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)<span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> AAPL, <span class="fu">aes</span>(<span class="at">x =</span> Date, <span class="at">y =</span> Volume, <span class="at">color =</span> Volume)) <span class="sc">+</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_gradient</span>(<span class="at">low =</span> <span class="st">"green"</span>, <span class="at">high =</span> <span class="st">"red"</span>,<span class="at">limits=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">500000000</span>))<span class="sc">+</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"1 year"</span>, <span class="at">date_labels =</span> <span class="st">"%Y"</span>)<span class="sc">+</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>))<span class="sc">+</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"AAPL Stock Price 2000-2021"</span>,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">"Date"</span>,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Opening Stock Price"</span>)<span class="sc">+</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">500000000</span>),</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Volume"</span>,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">sec.axis =</span> <span class="fu">sec_axis</span>(<span class="sc">~</span> . <span class="sc">/</span> <span class="dv">1000000</span>, <span class="at">name =</span> <span class="st">"Price"</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The visualization now uses color to display annual time intervals when the trading volume is extremely high compared to the normal trading volume patterns. The graph also clearly illustrates an alarming pattern, that the stock trading volume is lower on much higher stock prices from 2014 up until 2021 which may indicate that stocks are being overpriced. This helps with the forecasting aspect of time series visualizations, a solid hypothesis would be that the price of the stock will continue to increase over the long run, however, stock prices are volatile, and susceptible to fluctuating price swings.</p>
+<p>References:</p>
+<p>Onyshchak, O. (2020). Stock Market Data Set [Data set]. Retrieved from Kaggle, 10/24/2025. https://www.kaggle.com/datasets/jacksoncrow/stock-market-dataset</p>
 
 
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-date-sort="1762146000000" data-listing-file-modified-sort="1762183590809" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="204">
-<div class="thumbnail">
-<p><a href="./posts/Module 11/index.html" class="no-external"></a></p><a href="./posts/Module 11/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\Module 11\index_files\figure-html\unnamed-chunk-1-1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/Module 11/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Module 11/index.html" class="no-external">Module # 11: E. R. Tufte - modern historian in the field of data visualization</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/Module 11/index.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/Module 11/index.html" class="no-external">This is my eleventh post for my LIS4317 Visual Analytics blog. Welcome!</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/Module 11/index.html" class="no-external">
-<div class="listing-date">
-Nov 3, 2025
-</div>
-<div class="listing-author">
-Robert Walsh
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-listing-date-sort="1761278400000" data-listing-file-modified-sort="1761335202279" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="421">
-<div class="thumbnail">
-<p><a href="./posts/Module 10/index.html" class="no-external"></a></p><a href="./posts/Module 10/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\Module 10\index_files\figure-html\unnamed-chunk-3-1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/Module 10/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Module 10/index.html" class="no-external">Module # 10: Time Series and Visualization</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/Module 10/index.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/Module 10/index.html" class="no-external">This is my tenth post for my LIS4317 Visual Analytics blog. Welcome!</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/Module 10/index.html" class="no-external">
-<div class="listing-date">
-Oct 24, 2025
-</div>
-<div class="listing-author">
-Robert Walsh
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-listing-date-sort="1760760000000" data-listing-file-modified-sort="1760801870677" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="489">
-<div class="thumbnail">
-<p><a href="./posts/Module 9/index.html" class="no-external"></a></p><a href="./posts/Module 9/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\Module 9\mod9MV.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/Module 9/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Module 9/index.html" class="no-external">Module # 9: Visualizing Multivariate Data with ggplot2 &amp; Corrgram</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/Module 9/index.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/Module 9/index.html" class="no-external">This is my ninth post for my LIS4317 Visual Analytics blog. Welcome!</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/Module 9/index.html" class="no-external">
-<div class="listing-date">
-Oct 18, 2025
-</div>
-<div class="listing-author">
-Robert Walsh
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-listing-date-sort="1760155200000" data-listing-file-modified-sort="1760199790901" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="415">
-<div class="thumbnail">
-<p><a href="./posts/Module 8/index.html" class="no-external"></a></p><a href="./posts/Module 8/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\Module 8\corr.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/Module 8/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Module 8/index.html" class="no-external">Module # 8: Correlation Analysis and ggplot2</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/Module 8/index.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/Module 8/index.html" class="no-external">This is my eighth post for my LIS4317 Visual Analytics blog. Welcome!</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/Module 8/index.html" class="no-external">
-<div class="listing-date">
-Oct 11, 2025
-</div>
-<div class="listing-author">
-Robert Walsh
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-listing-date-sort="1759464000000" data-listing-file-modified-sort="1759500881013" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="873">
-<div class="thumbnail">
-<p><a href="./posts/Module 7/index.html" class="no-external"></a></p><a href="./posts/Module 7/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\Module 7\LIS4317_mod_7.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/Module 7/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Module 7/index.html" class="no-external">Module # 7: Visualizing Distributions in R</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/Module 7/index.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/Module 7/index.html" class="no-external">This is my seventh post for my LIS4317 Visual Analytics blog. Welcome!</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/Module 7/index.html" class="no-external">
-<div class="listing-date">
-Oct 3, 2025
-</div>
-<div class="listing-author">
-Robert Walsh
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-listing-date-sort="1759204800000" data-listing-file-modified-sort="1759266471296" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="382">
-<div class="thumbnail">
-<p><a href="./posts/Module 6/index.html" class="no-external"></a></p><a href="./posts/Module 6/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\Module 6\LIS4317_Mod6.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/Module 6/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Module 6/index.html" class="no-external">Module # 6: Visual Differences &amp; Deviation Analysis via R programming</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/Module 6/index.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/Module 6/index.html" class="no-external">This is my sixth post for my LIS4317 Visual Analytics blog. Welcome!</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/Module 6/index.html" class="no-external">
-<div class="listing-date">
-Sep 30, 2025
-</div>
-<div class="listing-author">
-Robert Walsh
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="6" data-listing-date-sort="1758686400000" data-listing-file-modified-sort="1758725014835" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="540">
-<div class="thumbnail">
-<p><a href="./posts/Module 5/index.html" class="no-external"></a></p><a href="./posts/Module 5/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\Module 5\images\_b_Average Position Over Time__b_.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/Module 5/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Module 5/index.html" class="no-external">Module # 5: Create Your Own Visualizations assignment Plotly</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/Module 5/index.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/Module 5/index.html" class="no-external">This is my fifth post for my LIS4317 Visual Analytics blog. Welcome!</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/Module 5/index.html" class="no-external">
-<div class="listing-date">
-Sep 24, 2025
-</div>
-<div class="listing-author">
-Robert Walsh
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="7" data-listing-date-sort="1758254400000" data-listing-file-modified-sort="1758291305819" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="279">
-<div class="thumbnail">
-<p><a href="./posts/Module 4/index.html" class="no-external"></a></p><a href="./posts/Module 4/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\Module 4\images\Module_04_LIS4317.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/Module 4/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Module 4/index.html" class="no-external">Module # 4: Time Series Visualization</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/Module 4/index.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/Module 4/index.html" class="no-external">This is my fourth post for my LIS4317 Visual Analytics blog. Welcome!</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/Module 4/index.html" class="no-external">
-<div class="listing-date">
-Sep 19, 2025
-</div>
-<div class="listing-author">
-Robert Walsh
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="8" data-listing-date-sort="1757304000000" data-listing-file-modified-sort="1757364854584" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="427">
-<div class="thumbnail">
-<p><a href="./posts/Module 3/index.html" class="no-external"></a></p><a href="./posts/Module 3/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\Module 3\Module3.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/Module 3/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Module 3/index.html" class="no-external">Module # 3: Refined Map with Color</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/Module 3/index.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/Module 3/index.html" class="no-external">This is my third post for my LIS4317 Visual Analytics blog. Welcome!</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/Module 3/index.html" class="no-external">
-<div class="listing-date">
-Sep 8, 2025
-</div>
-<div class="listing-author">
-Robert Walsh
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="9" data-listing-date-sort="1756699200000" data-listing-file-modified-sort="1756813082344" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="634">
-<div class="thumbnail">
-<p><a href="./posts/Module 2/index.html" class="no-external"></a></p><a href="./posts/Module 2/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\Module 2\Sheet 1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/Module 2/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Module 2/index.html" class="no-external">Module # 2: My Geographic Map of Hillsborough County Public Schools by Zipcode</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/Module 2/index.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/Module 2/index.html" class="no-external">This is my second post for my LIS4317 Visual Analytics blog. Welcome!</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/Module 2/index.html" class="no-external">
-<div class="listing-date">
-Sep 1, 2025
-</div>
-<div class="listing-author">
-Robert Walsh
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="10" data-listing-date-sort="1756008000000" data-listing-file-modified-sort="1756751593065" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="281">
-<div class="thumbnail">
-<p><a href="./posts/Module 1 Assignment 1/index.html" class="no-external"></a></p><a href="./posts/Module 1 Assignment 1/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\Module 1 Assignment 1\worldPopulation750.jpg"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/Module 1 Assignment 1/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Module 1 Assignment 1/index.html" class="no-external">Module # 1: Assignment # 1:</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/Module 1 Assignment 1/index.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/Module 1 Assignment 1/index.html" class="no-external">This is the first post in my LIS4317 Visual Analytics blog. Welcome!</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/Module 1 Assignment 1/index.html" class="no-external">
-<div class="listing-date">
-Aug 24, 2025
-</div>
-<div class="listing-author">
-Robert Walsh
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

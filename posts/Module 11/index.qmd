@@ -1,0 +1,30 @@
+---
+title: "Module # 11: E. R. Tufte - modern historian in the field of data visualization"
+author: "Robert Walsh"
+date: "2025-11-03"
+---
+
+This is my eleventh post for my LIS4317 Visual Analytics blog. Welcome!
+
+For this assignment we were tasked with reviewing Dr. Piwek's posting on Tufte and C. Minard in R; to generate one of the visualization's that he discussed in his post that include:
+
+i. Marginal histogram scatter plot
+ii. Dot-dash plot in ggplot2
+iii. Dot-dash plot in lattice
+Or any one you like the best.
+
+I chose to replicate the 'Dot-dash plot in ggplot2' using the 'ggplot2' & 'ggthemes' packages in R.
+
+```{r}
+# Load packages
+library(ggplot2)
+library(ggthemes)
+
+# Plot the data with 'ggplot'
+ggplot(mtcars, aes(wt, mpg)) + geom_point() + geom_rug() + theme_tufte(ticks=F) + 
+  xlab("Car weight (lb/1000)") + ylab("Miles per gallon of fuel") + 
+  theme(axis.title.x = element_text(vjust=-0.5), axis.title.y = element_text(vjust=1))
+
+```
+
+I chose to reproduce this particular visualization because I enjoyed how Dr. Piwek captures Tufte's work on breaking down the data, the multiple variables, and the dimensions to show the data visualization in a simple way that people can understand. The way that Dr. Piwek used a geom_rug() from ggplot2 to integrate the text and graphic into a whole is very interesting; capturing multivariate complexity by using the smallest effective differences, like avoiding bold colors, heavy lines, and distracting labels and scales as mentioned in our lecture materials for this module by Dr. Friedman.

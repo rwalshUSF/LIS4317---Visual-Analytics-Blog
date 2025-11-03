@@ -1,0 +1,64 @@
+---
+title: "Module # 10: Time Series and Visualization"
+author: "Robert Walsh"
+date: "2025-10-24"
+---
+
+This is my tenth post for my LIS4317 Visual Analytics blog. Welcome!
+
+For this assignment we were tasked with exploring time series visualization methods and techniques in R Studio using the ggplot2() package and the wide range of functions that are available. We also explored videos and readings that were assigned in the module. I chose to use the 'AAPL.csv' file by Onyshchak (2020) from Kaggle.com.
+
+```{r}
+# Read csv file
+AAPL<-read.csv("AAPL.csv")
+AAPL$Date<-as.Date(AAPL$Date)
+AAPL<-AAPL[4816:dim(AAPL)[1],]
+
+```
+
+After reading the file, I had a look at the variables.
+
+```{r}
+summary(AAPL)
+```
+
+I chose to use the 'Date' variable as the x-axis and the different price variables as the y-axis. Plotting the 'Open' price over time first to gain a compact description of the data.
+
+```{r}
+library(ggplot2)
+ggplot(AAPL,aes(x=Date,y=Open,group = 1))+
+  geom_line()+
+  scale_x_date(date_breaks = "1 year", date_labels = "%Y")+
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))+
+  labs(title = "AAPL Stock Price 2000-2021",
+       x="Date",
+       y="Opening Stock Price")
+```
+
+This gives a basic idea of the time series visualization of opening stock price vs. date.
+However, by adding a few layers, and adjusting some attributes, I was able to clean up the visualization to show a line for the changing volume in trading over time. GGplot() gives us control of the data visualization layers/attributes.
+
+```{r}
+#| warning: false
+options(scipen = 999)
+ggplot(data = AAPL, aes(x = Date, y = Open*1000000))+
+  geom_line() +
+  geom_smooth(method = "lm", se = FALSE)+
+  geom_line(data = AAPL, aes(x = Date, y = Volume, color = Volume)) +
+  scale_color_gradient(low = "green", high = "red",limits=c(0,500000000))+
+  scale_x_date(date_breaks = "1 year", date_labels = "%Y")+
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))+
+  labs(title = "AAPL Stock Price 2000-2021",
+       x="Date",
+       y="Opening Stock Price")+
+  scale_y_continuous(limits = c(0,500000000),
+    name = "Volume",
+    sec.axis = sec_axis(~ . / 1000000, name = "Price")
+  ) 
+```
+The visualization now uses color to display annual time intervals when the trading volume is extremely high compared to the normal trading volume patterns. The graph also clearly illustrates an alarming pattern, that the stock trading volume is lower on much higher stock prices from 2014 up until 2021 which may indicate that stocks are being overpriced. This helps with the forecasting aspect of time series visualizations, a solid hypothesis would be that the price of the stock will continue to increase over the long run, however, stock prices are volatile, and susceptible to fluctuating price swings.
+
+References:
+
+Onyshchak, O. (2020). Stock Market Data Set [Data set]. Retrieved from Kaggle, 10/24/2025. https://www.kaggle.com/datasets/jacksoncrow/stock-market-dataset
+
