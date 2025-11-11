@@ -1,5 +1,144 @@
 ---
-title: "index"
-format: html
+title: "Module # 13: Using ChatGPT to Generate and Share Visualizations"
+author: "Robert Walsh"
+date: "2025-11-11"
 ---
 
+This is post number thirteen for my LIS4317 Visual Analytics blog. Welcome!
+
+For this assignment, we were tasked with experimenting with ChatGPT to create data visualizations and reflect on the process. We will gain hands-on experience with AI tools for visual analytics and critically assess their usefulness.
+
+Task \# 1 - Register for ChatGPT:
+
+I did not need to register for a ChatGPT account; I could use the application as a guest.
+
+Task \# 2 - Generate a Visualization Using ChatGPT:
+
+Select a dataset you want to visualize.
+
+I selected the 'diamonds' dataset from 'ggplot2'
+
+The prompt I selected for ChatGPT was explicitly designed to exploit a flaw in AI: that machines still have a hard time reasoning with ambiguity.
+
+[![](chatGPT.png)](chatGPT.png)
+
+ChatGPT had no problem providing me with R code to generate a plot; However, the AI may have had trouble reasoning to determine precisely what a 'regular' person is. In this case, GPT assumed that regular people are those who can afford diamonds costing less than \$5000, which may be biased and possibly offensive to some people.
+
+For this reason, humans remain necessary in evaluating AI output to ensure visualizations are accurate, ethical, and meaningful.
+
+This is the output AI generated:
+
+```{r}
+#| echo: false
+# Load ggplot2
+library(ggplot2)
+
+# Filter for "affordable" diamonds (under $5,000)
+affordable_diamonds <- subset(diamonds, price < 5000)
+
+# Create a bar chart showing count of affordable diamonds by cut
+ggplot(affordable_diamonds, aes(x = cut, fill = cut)) +
+  geom_bar() +
+  scale_fill_brewer(palette = "Set3") +
+  labs(
+    title = "Diamonds Regular People Can Afford (Under $5,000)",
+    subtitle = "Distribution of affordable diamonds by cut quality",
+    x = "Cut Quality",
+    y = "Number of Diamonds",
+    fill = "Cut"
+  ) +
+  theme_minimal(base_size = 14)
+```
+
+This chart is not bad, but it can be improved for clarity and to avoid bias.
+
+Task \# 3 - Customize and Refine Your Visualization:
+
+Here is a new chart. I personally refined the AI-generated code to ensure the visualization is accurate, ethical, and meaningful.
+
+```{r}
+# Load libraries
+library(ggplot2)
+library(dplyr)
+
+# Create neutral price categories
+diamonds_price_cat <- diamonds %>%
+  mutate(
+    price_category = case_when(
+      price < 2500 ~ "Budget (< $2,500)",
+      price < 5000 ~ "Mid-range ($2,500–$4,999)",
+      price < 10000 ~ "Premium ($5,000–$9,999)",
+      TRUE ~ "Luxury ($10,000+)"
+    )
+  )
+
+# Bar chart with improved x-axis label spacing
+ggplot(diamonds_price_cat, aes(x = cut, fill = price_category)) +
+  geom_bar(position = "dodge") +
+  scale_fill_brewer(palette = "Set2") +
+  labs(
+    title = "Diamonds by Cut and Price Range",
+    subtitle = "Exploring how diamond quality relates to price categories",
+    x = "Cut Quality",
+    y = "Number of Diamonds",
+    fill = "Price Range"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    axis.text.x = element_text(angle = 30, hjust = 1, vjust = 1, size = 12),
+    axis.title.x = element_text(margin = margin(t = 10)),
+    plot.title = element_text(face = "bold", size = 16)
+  )
+```
+
+The resulting chart is more professional, avoids uncomfortable confrontations and ethical violations, and is more accurate by inclusively providing price ranges for everyone.
+
+I then asked ChatGPT to take it a step further and modify the improved code to accommodate people who may be colorblind, further improving the visualization. This is the prompt and the final visualization:
+
+[![](chatgpt2.png)](chatgpt2.png)
+
+```{r}
+# Load libraries
+library(ggplot2)
+library(dplyr)
+
+# Create price categories
+diamonds_price_cat <- diamonds %>%
+  mutate(
+    price_category = case_when(
+      price < 2500 ~ "Budget (< $2,500)",
+      price < 5000 ~ "Mid-range ($2,500–$4,999)",
+      price < 10000 ~ "Premium ($5,000–$9,999)",
+      TRUE ~ "Luxury ($10,000+)"
+    )
+  )
+
+# Define a color-blind–friendly palette (Okabe–Ito)
+okabe_ito <- c(
+  "#E69F00", # orange
+  "#56B4E9", # sky blue
+  "#009E73", # bluish green
+  "#F0E442"  # yellow
+)
+
+# Create the bar chart
+ggplot(diamonds_price_cat, aes(x = cut, fill = price_category)) +
+  geom_bar(position = "dodge") +
+  scale_fill_manual(values = okabe_ito) +
+  labs(
+    title = "Diamonds by Cut and Price Range",
+    subtitle = "Exploring how diamond quality relates to price categories",
+    x = "Cut Quality",
+    y = "Number of Diamonds",
+    fill = "Price Range"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    axis.text.x = element_text(angle = 30, hjust = 1, vjust = 1, size = 12),
+    axis.title.x = element_text(margin = margin(t = 10)),
+    plot.title = element_text(face = "bold", size = 16),
+    legend.position = "right"
+  )
+```
+
+I was pleased with the final result! This graph suggests that there are many diamonds in a variety of cut qualities for a budget price of \<2500 dollars, and many more options if a customer wanted to seek another price range. ChatGPT was truly a helpful collaborator in this example, and we see that humans are still necessary in the collaboration process to spot errors or bias in AI-generated visuals, and ensure visualizations are accurate, ethical, and meaningful.
