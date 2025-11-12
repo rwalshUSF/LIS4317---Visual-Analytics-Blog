@@ -6,6 +6,26 @@ date: "2025-11-12"
 
 The stock market's history is punctuated by speculative bubbles, like the dot-com crash of 2000 and the 2008 financial crisis, where market irrationality led to valuations becoming detached from fundamental worth; similarly, today, the dramatic rise of Nvidia's (NVDA) stock, driven by its AI chip dominance, accounts for a large percentage of major stock market indexes, and has fueled market anxiety by drawing parallels to these past events. While Nvidia has navigated significant drops before, such as declines in 2018 due to the crypto market crash and in 2020 during the COVID-19 pandemic, its current elevated valuation leaves it vulnerable to a correction that could be difficult to recover from. I hypothesize that a substantial market correction, particularly if combined with a significant reduction in long-term demand or technological challenges, could be more than a temporary setback, potentially eroding investor confidence and prompting a lasting re-evaluation of Nvidia's market position and value.
 
+For this visual analytics project I will be using data from the 'Stock Market Data Set' on Kaggle.com by Onyshchak (2020). Here is the code I used to import the data set into Rstudio and create a data frame. I also included a summary of the variables to show the dimensions and a sample of the first 10 records in the data set.
+
+```{r}
+#| echo: true
+# Read data-set into Rstudio and create data frame
+myDF<-read.csv("NVDA.csv")
+
+# Clean data set
+myDF<-na.omit(myDF)
+attributes(myDF)$na.action <- NULL
+myDF$Date<-as.Date(myDF$Date, format = "%Y-%m-%d")
+
+# Print str, summary, and first 10 records
+str(myDF)
+summary(myDF)
+head(myDF)
+```
+
+<hr>
+
 First and foremost, it is troubling that a single company can account for such a large share of a primary stock market index. The S&P 500 is a market-capitalization-weighted index, meaning each company's weight in the index is proportional to its market capitalization. Driven by demand for its high-powered AI chips, Nvidia's valuation has surged, making it the world's most valuable company by market capitalization and giving it the highest weight in the S&P 500. According to recent data, Nvidia accounts for approximately 7.7% to 8% of the S&P 500 index. (Isbitts, 2025) The following pie chart uses a part-to-whole visualization strategy. Few (2009) suggests that "information visualizations should cause what's potentially meaningful to stand out" (p. 33), and in this case, the slice of the pie chart representing NVDA stock is crucial because it shows a single company's weight relative to the other 499 in the index.
 
 ```{r}
@@ -256,13 +276,13 @@ The Onyshchak (2020) 'Stock Market Data Set' gives us a preview of the NVDA stoc
 
 Here is some related work; a visualization or example of visual analytics from YahooFinance.com that inspired me:
 
-[![](yahoo.png)](yahoo.png) 
+[![](yahoo.png)](yahoo.png)
 
 Source: Schafer (2025)
 
-To compliment this wonderful example of visual analytics from YahooFinance.com, Schafer (2025) states that "There's perhaps no clearer way to see how Nvidia ran away from the competition in the AI boom than looking at the company's market capitalization against its peers." and it clearly shows just how much the company's market cap has outperformed the S&P 500 (SPX) index as well as a couple of other mega-cap stocks.
+To compliment this excellent example of visual analytics from YahooFinance.com, Schafer (2025) states that "There's perhaps no clearer way to see how Nvidia ran away from the competition in the AI boom than looking at the company's market capitalization against its peers" and it clearly shows just how much the company's market cap has outperformed the S&P 500 (SPX) index as well as a couple of other mega-cap stocks.
 
-The main problem lies in the weighted percentage of the stock market that NVDA accounts for, as discussed above, combined with how much the NVDA stock price has increased relative to the broader S&P 500 index. A good market crash and sell-off in the S&P 500 and NASDAQ 100 would likely trigger a massive sell-off in NVDA stock. The following chart shows just how far the NVDA stock price has skyrocketed in 2025, and the potential downside in a market crash or sell-off. The chart does not adjust the stock price for the "10-for-1 forward stock split. The shares began trading on a split-adjusted basis at market open on June 10, 2024." (Capoot, 2024) Therefore, the current stock price of one share of NVDA is trading at "\$ 191.84 on November 12th, 2025" (SlickCharts.com, 2025)
+The main problem lies in the weighted percentage of the stock market that NVDA accounts for, as discussed above, combined with the extent to which NVDA's stock price has increased relative to the broader S&P 500 index. A good market crash and sell-off in the S&P 500 and NASDAQ 100 would likely trigger a massive sell-off in NVDA stock. The following chart shows just how far the NVDA stock price has skyrocketed in 2025, and the potential downside in a market crash or sell-off. The chart does not adjust the stock price for the "10-for-1 forward stock split. The shares began trading on a split-adjusted basis at market open on June 10, 2024." (Capoot, 2024) Therefore, the current stock price of one share of NVDA is trading at "\$ 191.84 on November 12th, 2025" (SlickCharts.com, 2025)
 
 We would now need to multiply that price by ten to keep the scale of this analysis accurate, placing the 2025 NVDA price target at approximately \$1918.40 per share.
 
