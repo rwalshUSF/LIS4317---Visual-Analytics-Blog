@@ -1,0 +1,338 @@
+---
+title: "Final Project: Historic Price Drops in Nvidia Stock Price"
+author: "Robert Walsh"
+date: "2025-11-12"
+---
+
+  The stock market's history is punctuated by speculative bubbles, like the dot-com crash of 2000 and the 2008 financial crisis, where market irrationality led to valuations becoming detached from fundamental worth; similarly, today, the dramatic rise of Nvidia's (NVDA) stock, driven by its AI chip dominance, accounts for a large percentage of major stock market indexes, and has fueled market anxiety by drawing parallels to these past events. While Nvidia has navigated significant drops before, such as declines in 2018 due to the crypto market crash and in 2020 during the COVID-19 pandemic, its current elevated valuation leaves it vulnerable to a correction that could be difficult to recover from. I hypothesize that a substantial market correction, particularly if combined with a significant reduction in long-term demand or technological challenges, could prove to be more than a temporary setback, potentially eroding investor confidence and causing a lasting re-evaluation of Nvidia's market position and value.
+  
+  First and foremost, it is troublesome that one single company can account for such a large proportion of a major stock market index. The S&P 500 is a market capitalization-weighted index, which means each company's slice of the index is proportional to its total market value. Driven by demand for its high-powered AI chips, Nvidia's valuation has surged, making it the world's most valuable company by market capitalization and giving it the highest weight in the S&P 500. As of recent data, Nvidia makes up approximately 7.7% to 8% of the entire S&P 500 index. (Isbitts, 2025) The following pie chart uses a part-to-whole visualization strategy. Few (2009) suggests that "information visualizations should cause what's potentially meaningful to stand out" (p. 33) and in this case the slice of the pie chart that NVDA stock accounts for is important because it shows a single company's weight compared to the other 499 in the index.
+  
+```{r}
+#| echo: false
+# Data
+# Nvidia's weight in the S&P 500 is approximately 8%
+# The rest of the S&P 500 index accounts for 92%
+slices <- c(8, 92)
+lbls <- c("Nvidia (NVDA)", "Rest of S&P 500")
+
+# Calculate percentages for labels
+percent <- round(slices/sum(slices)*100)
+pielabels <- paste(lbls, percent, "%", sep=" ")
+
+# Define colors for the slices
+colors <- c("#006747", "#cfc493")
+
+# Create the pie chart
+pie(slices, labels = pielabels, main = "Nvidia's Weight in the S&P 500 Index", col = colors,
+    cex = 0.8)
+
+# Add a legend for clarity
+legend("topright", lbls, cex = 0.8, fill = colors)
+```
+
+A stacked bar chart gives us another 'multivariate' look at the part-to-whole relationship which according to Yau (2011) “Across two variables, it is a little more difficult, but it’s still doable.” (p. 228) My chart generally aligned with good data visualization practices—particularly in clarity and the effective use of categorical and quantitative variables. However, some fine-tuning was necessary to meet the principles of intuitive design and visual hierarchy, which made the process both insightful and a valuable learning experience.
+  
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+# Load necessary packages
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(scales)
+
+# Use actual current weights as of November 2025
+# (These are placeholders from the user's code, the actual weights may vary)
+nvda_sp500_weight <- 7.68
+nvda_nasdaq_weight <- 13.93
+
+# Create the data frame in "wide" format first
+index_weights <- data.frame(
+  Index = c("S&P 500", "NASDAQ 100"),
+  NVDA = c(nvda_sp500_weight, nvda_nasdaq_weight),
+  Other_Components = c(100 - nvda_sp500_weight, 100 - nvda_nasdaq_weight)
+)
+
+# Convert to long format for ggplot2 stacked bars
+index_weights_long <- index_weights %>%
+  pivot_longer(
+    cols = c(NVDA, Other_Components),
+    names_to = "Component",
+    values_to = "Weight_Percent"
+  )
+
+# Order the 'Component' factor so 'Other_Components' is at the bottom
+index_weights_long$Component <- factor(index_weights_long$Component, levels = c("Other_Components", "NVDA"))
+
+# Create the Stacked Bar Chart
+ggplot(data = index_weights_long, aes(x = Index, y = Weight_Percent, fill = Component)) +
+  geom_col(position = "stack") +
+  labs(
+    title = "Nvidia Market Capitalization as a Percent of Total Index Weight",
+    subtitle = "Data as of November 2025",
+    caption = "Data source: slickcharts.com (2025)",
+    x = "Index",
+    y = "Percentage of Index Weight",
+    fill = "Index Component"
+  ) +
+  scale_y_continuous(labels = scales::percent_format(scale = 1)) +
+  scale_fill_manual(
+    values = c("Other_Components" = "#cfc493", "NVDA" = "#006747"),
+    labels = c("Other_Components" = "Index (ex-NVDA)", "NVDA" = "NVDA Weight")
+  ) +
+  geom_text(
+    data = subset(index_weights_long, Component == "NVDA"),
+    aes(label = paste0(round(Weight_Percent, 1), "%")),
+    position = position_stack(vjust = 0.5),
+    color = "white",
+    fontface = "bold"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "right")
+```
+  
+  Now for the really scary part, at least if you have any money invested in a 401K or any other investment product that consistently buys stock market assets on a consistent schedule with your hard earned money as a long term investment strategy. These investments come with inherent risks, and investors could lose alot of their money in a market downturn or crash. Take for example the dot-com bubble and market crash in 2000. "Fueled by a fervor for Internet-based companies, equity markets experienced exponential growth, highlighted by the Nasdaq index skyrocketing from under 1,000 in 1995 to more than 5,000 by 2000." (Hayes, 2025) During this historic event NVDA stock price peaked in March 2000 and crashed to about half of the peak value by June 2000. If an investor had their money invested in either the NASDAQ index or NVDA stock, they would have lost about half of their investment. According to Hayes (2025) "The Nasdaq plummeted dramatically from a peak of 5,048 on March 10, 2000, to 1,139.90 by Oct. 4, 2002, a staggering decline of 76.81%," and many tech stocks lost value or went bankrupt. It took many years for the stock market to recover and fortunately it eventually did, however, the people who could not afford to wait it out would have sold their investments at a loss.
+  
+This chart displays Nvidia's stock price rise and fall during the dot-com crash using stock price data from the 'Stock Market Data Set' from Kaggle.com by Onyshchak (2020) and features a Basic Visual Technique for analytics using color, specifically a diverging palette, two contrasting hues with a neutral midpoint for data around a critical value, which in this case is the peak stock price in 2000. Few (2009) mentions that "when we want to use different expressions of a pre-attentive attribute, such as hue, to separate objects into different groups, we should select expressions of t hat attribute that vary significantly from one another" (p. 48) therefore rising prices are blue and declining prices are red:
+  
+```{r}
+#| echo: false
+# Read data-set into Rstudio and create data frame
+myDF<-read.csv("NVDA.csv")
+
+# Clean data set
+myDF<-na.omit(myDF)
+attributes(myDF)$na.action <- NULL
+myDF$Date<-as.Date(myDF$Date, format = "%Y-%m-%d")
+
+# load libraries
+library(ggplot2)
+library(scales)
+
+# filter the data to end at April 15th, 2000
+subset_to_april_15_2000 <- myDF[myDF$Date <= as.Date("2000-04-15"), ]
+
+# Identify the date of the peak price to set the color break point
+# The peak occurred in March.
+peak_date <- subset_to_april_15_2000$Date[which.max(subset_to_april_15_2000$Close)]
+
+# Create ggplot graph with conditional line color and monthly breaks
+ggplot(data = subset_to_april_15_2000, aes(x = Date, y = Close)) +
+  # Use geom_line & split the line into segments based on a condition
+  geom_line(aes(color = Date > peak_date), linewidth = 1.5) +
+  scale_color_manual(values = c("FALSE" = "steelblue", "TRUE" = "red"), guide = "none") +
+  labs(
+    title = "NVDA Stock Price: Rise and Fall before April 15th, 2000",
+    subtitle = "Highlighting the peak in blue and start of the dot-com decline with a red line",
+    caption = "Data source: Onyshchak, O. (2020) - Kaggle.com",
+    x = "Date",
+    y = "Closing Stock Price (USD)"
+  ) +
+  scale_x_date(
+    breaks = scales::date_breaks("1 month"),
+    labels = scales::date_format("%Y-%m"),
+    limits = as.Date(c("1999-01-01", "2000-04-15"))
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold"),
+    plot.subtitle = element_text(hjust = 0.5),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
+
+```
+
+  This chart is frightening indeed, and may bring back bad memories for people who lost money in their investments at this time, however, this chart does not tell the whole story. The visualization above uses a technique called 'filtering' which Few (2009) describes as "the act of reducing the data that we're viewing to a subset of what's currently there." (p. 64) To view the complete time series chart for all of the records in the data set we need to zoom out. Now we can see that the dot-com crash in 2000 does not seem like such a big deal because after a few years, the stock price recovered all of its losses and even continued to increase in price over the years to come:
+  
+```{r}
+#| echo: false
+# Create ggplot graph with yearly breaks
+ggplot(data = myDF, aes(x = Date, y = Close)) +
+  # Use geom_line
+  geom_line(linewidth = 0.75) +
+  labs(
+    title = "NVDA Stock Price: From 1999-2020",
+    caption = "Data source: Onyshchak, O. (2020) - Kaggle.com",
+    x = "Date",
+    y = "Closing Stock Price (USD)"
+  ) +
+  scale_x_date(
+    breaks = scales::date_breaks("1 year"),
+    labels = scales::date_format("%Y")
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold"),
+    plot.subtitle = element_text(hjust = 0.5),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
+```
+
+  The chart above shows that not only did the NVDA stock price recover from the dot-com bubble/crash in 2000 but if an investor held on to their investment and rode out the price variance fluctuations, they would have made a significant profit on their investment by the year 2007 and even more if they held on until 2018. 
+  
+  To highlight another significant decline in NVDA stock price we will once again filter the data to show the market crash in 2008 due to the financial crisis. Singh (2024) mentions that the "2008 financial crisis was an epic financial and economic collapse that cost many ordinary people their jobs, their life savings, their homes, or all three." Zooming back in at this point in time, we can once again get an idea of how the NVDA investors were feeling about their investment at the time.
+
+```{r}
+#| echo: false
+# load libraries
+library(ggplot2)
+library(scales)
+
+# filter the data to end at DEC. 31st, 2008
+subset_to_december_2008 <- myDF[myDF$Date > as.Date("2004-12-31") & myDF$Date <= as.Date("2008-12-31"), ]
+
+# Identify the date of the peak price to set the color break point
+peak_date <- subset_to_december_2008$Date[which.max(subset_to_december_2008$Close)]
+
+# Create ggplot graph with conditional line color and breaks every two months
+ggplot(data = subset_to_december_2008, aes(x = Date, y = Close)) +
+  # Use geom_line & split the line into segments based on a condition
+  geom_line(aes(color = Date > peak_date), linewidth = 1.5) +
+  scale_color_manual(values = c("FALSE" = "steelblue", "TRUE" = "red"), guide = "none") +
+  labs(
+    title = "NVDA Stock Price: Rise and Fall before December 2008",
+    subtitle = "Highlighting the peak in blue and start of the financial crisis decline with a red line",
+    caption = "Data source: Onyshchak, O. (2020) - Kaggle.com",
+    x = "Date",
+    y = "Closing Stock Price (USD)"
+  ) +
+  scale_x_date(
+    breaks = scales::date_breaks("2 months"),
+    labels = scales::date_format("%Y-%m"),
+    limits = as.Date(c("2005-01-01", "2009-01-01"))
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold"),
+    plot.subtitle = element_text(hjust = 0.5),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
+```
+
+  How about one more chart to highlight the pain felt by NVDA investors in December 2018, due to the cryptocurrency market crash hurting GPU demand and U.S.-China trade tensions. McKenna (2019) states that "In one year, NVIDIA (NVDA) stock went from being belle of the stock market ball to something akin to an evil witch casting spells on investors' portfolios. After returning 227% and 82% in 2016 and 2017, respectively, shares of the graphics processing unit (GPU) specialist declined 30.8% (including dividends) in 2018." This is the resulting chart generated by filtering the records in the data set to reflect this time interval:
+
+```{r}
+#| echo: false
+# load libraries
+library(ggplot2)
+library(scales)
+
+# filter the data to end at Dec 31st, 2018
+subset_to_december_2018 <- myDF[myDF$Date > as.Date("2016-12-31") & myDF$Date <= as.Date("2018-12-31"), ]
+
+# Identify the date of the peak price to set the color break point
+peak_date <- subset_to_december_2018$Date[which.max(subset_to_december_2018$Close)]
+
+# Create ggplot graph with conditional line color and monthly breaks
+ggplot(data = subset_to_december_2018, aes(x = Date, y = Close)) +
+  # Use geom_line & split the line into segments based on a condition
+  geom_line(aes(color = Date > peak_date), linewidth = 1.5) +
+  scale_color_manual(values = c("FALSE" = "steelblue", "TRUE" = "red"), guide = "none") +
+  labs(
+    title = "NVDA Stock Price: Rise and Fall before December 2018",
+    subtitle = "Highlighting the peak in blue and start of the crypto decline with a red line",
+    caption = "Data source: Onyshchak, O. (2020) - Kaggle.com",
+    x = "Date",
+    y = "Closing Stock Price (USD)"
+  ) +
+  scale_x_date(
+    breaks = scales::date_breaks("1 month"),
+    labels = scales::date_format("%Y-%m"),
+    limits = as.Date(c("2017-01-01", "2019-01-01"))
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold"),
+    plot.subtitle = element_text(hjust = 0.5),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
+
+```
+
+  The Onyshchak (2020) 'Stock Market Data Set' gives us a preview of the NVDA stock crash in March 2020 during the broader market crash at the onset of the COVID-19 pandemic, however, the dataset ends with the last record on 2020-04-01 and the pattern of a decline with rapid recovery continues into the current present time, 2025, which leads to the main conclusive visualization that will be used to support the hypothesis that a substantial market correction, particularly if combined with a significant reduction in long-term demand or technological challenges, could prove to be more than a temporary setback, potentially eroding investor confidence and causing a lasting re-evaluation of Nvidia's market position and value.
+  
+  The main problem lies with the weighted percentage of the stock market that NVDA stock accounts for as discussed above in combination with how much the NVDA stock price has increased compared to the growth of the broader S&P 500 index. A good market crash and sell off of the major S&P 500 and NASDAQ 100 indexes would likely trigger a massive sell off in NVDA stock. The following chart shows just how far NVDA stock price has skyrocketed into 2025 and the potential downside for price decline in a market crash or sell-off. The chart does not adjust the stock price for the "10-for-1 forward stock split. The shares began trading on a split-adjusted basis at market open on June 10 2024." (Capoot, 2024) Therefore, the current stock price of one share of NVDA is trading at "$ 191.84 on November 12th, 2025" (SlickCharts.com, 2025) 
+  
+  We would now need to multiply that price by ten to keep the scale of this analysis accurate placing the 2025 NVDA price target at approximately $1918.40 per share.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+# Load the libraries
+library(tidyverse)
+library(ggplot2)
+library(scales)
+
+# Define the hypothetical data point coordinates and forecast end date
+forecast_date_end <- as.Date("2027-12-31")
+hypothetical_date <- as.Date("2025-12-31")
+hypothetical_price <- 1918
+label_text <- "2025 Target $1918"
+
+# Fit the linear model to existing data (myDF)
+model <- lm(Close ~ Date, data = myDF)
+
+# Create a new data frame with dates that cover the entire range, including the future
+# Generate a sequence of dates from the start of your data to the end of the forecast period
+dates_to_predict <- seq(from = min(myDF$Date), to = forecast_date_end, by = "month")
+forecast_data <- data.frame(Date = dates_to_predict)
+
+# Use the model to predict 'Close' values for all those dates
+forecast_data$Close_Predicted <- predict(model, newdata = forecast_data)
+
+# Create the plot using the new prediction data for the line, and original data for points
+ggplot(myDF, aes(x = Date, y = Close)) +
+  geom_line() +
+  # Add the extended linear forecast line using the new data frame
+  geom_line(data = forecast_data, aes(y = Close_Predicted),
+            color = "blue", linetype = "dashed", size = 0.8) +
+  # Add the labeled hypothetical point
+  annotate("point", x = hypothetical_date, y = hypothetical_price, color = "red", size = 3) +
+  annotate("text", x = hypothetical_date, y = hypothetical_price, label = label_text,
+           vjust = 2, hjust = 1.1, color = "red", size = 4) +
+  labs(title = "NVIDIA Stock Price Time Series with Linear Forecast",
+       subtitle = "Not price adjusted for the 10:1 stock-split in 2024",
+       x = "Date",
+       y = "Closing Price (USD)") +
+  theme_minimal() +
+  # Set the x-axis breaks to a reasonable interval extending to the end date
+  scale_x_date(date_breaks = "1 year", date_labels = "%Y",
+               limits = c(min(myDF$Date), forecast_date_end)) +
+  # Rotate the x-axis labels
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
+  # Ensure the target point is visible on the y-axis
+  scale_y_continuous(limits = c(min(myDF$Close), max(hypothetical_price, max(myDF$Close, forecast_data$Close_Predicted))))
+```
+  
+  The visualization now uses a blue colored dashed regression line to show just how far the current 2025 target NVDA stock price has deviated away from the mean. The graph also clearly illustrates the alarming pattern of just how far the price could fall if the stock market experiences another historical crash where stock prices return to average values, which may very well indicate that stocks are being overpriced in the current market environment. This analysis helps with the forecasting aspect of time series visualizations, once again to support the hypothesis that a substantial market correction, particularly if combined with a significant reduction in long-term demand or technological challenges, could prove to be more than a temporary setback, potentially eroding investor confidence and causing a lasting re-evaluation of Nvidia's market position and value.
+  
+<hr>
+
+References:
+
+<hr>
+
+  Capoot, A. (2024). Nvidia announces 10-for-1 stock split after AI-driven boom in share price. CNBC. Retrieved November 12, 2025, from https://www.cnbc.com/2024/05/22/nvidia-announces-10-for-1-stock-split.html
+  
+  Few, S. (2009). Now you see it: simple visualization techniques for quantitative analysis. Analytics Press.
+
+  Hayes, A. (2025). Understanding the Dotcom Bubble: Causes, Impact, and Lessons. Investopedia. Retrieved November 12, 2025, from https://www.investopedia.com/terms/d/dotcom-bubble.asp
+  
+  Isbitts, R. (2025). Nvidia Stock at 8% of the S&P 500 Index Is a Big Problem for Investors. Let’s Do the Math. Yahoo Finance. Retrieved November 12, 2025, from https://finance.yahoo.com/news/nvidia-stock-8-p-500-144222897.html?guccounter=1&guce_referrer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8&guce_referrer_sig=AQAAAGAeVMpI1Uv_j-RSefa75j0HuiqintWQW1yuzFH1c1732wGVhHwYuY889a_YXpBHRKDacmydvGmEwztfIunh-EG0JeN5ibAZZocA4RvrwsUkaMhnQccmwxRE0qLvjw18z8Q7KMrN4OJrhohtzOKMbMYEi8cu68TspyM34hRgOMHt
+  
+  McKenna, B. (2019). Why NVIDIA Stock Plunged 31% in 2018. Motley Fool. Retrieved November 12, 2025, from https://www.fool.com/investing/2019/01/14/why-nvidia-stock-plunged-31-in-2018.aspx
+  
+  Onyshchak, O. (2020). Stock Market Data Set [Data set]. Retrieved from Kaggle, 11/12/2025. https://www.kaggle.com/datasets/jacksoncrow/stock-market-dataset
+  
+  Singh, M. (2024). The 2008 Financial Crisis Explained. Investopedia. Retrieved November 12, 2025, from https://www.investopedia.com/articles/economics/09/financial-crisis-review.asp
+  
+  SlickCharts.com (2025). S&P 500 Companies by Market Cap. SlickCharts. Retrieved November 12, 2025, from https://www.slickcharts.com/sp500
+  
+  SlickCharts.com (2025). Nasdaq 100 Companies by Market Cap. SlickCharts. Retrieved November 12, 2025, from https://www.slickcharts.com/nasdaq100
+  
+  Yau, N. C. (2011). Visualize this: the flowing data guide to design, visualization, and statistics (1st edition). Wiley Publishing Inc.
