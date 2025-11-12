@@ -254,6 +254,14 @@ ggplot(data = subset_to_december_2018, aes(x = Date, y = Close)) +
 
 The Onyshchak (2020) 'Stock Market Data Set' gives us a preview of the NVDA stock crash in March 2020 during the broader market crash at the onset of the COVID-19 pandemic, however, the dataset ends with the last record on 2020-04-01 and the pattern of a decline with rapid recovery continues into the current present time, 2025, which leads to the main conclusive visualization that will be used to support the hypothesis that a substantial market correction, particularly if combined with a significant reduction in long-term demand or technological challenges, could prove to be more than a temporary setback, potentially eroding investor confidence and causing a lasting re-evaluation of Nvidia's market position and value.
 
+Here is some related work; a visualization or example of visual analytics from YahooFinance.com that inspired me:
+
+[![](yahoo.png)](yahoo.png) 
+
+Source: Schafer (2025)
+
+To compliment this wonderful example of visual analytics from YahooFinance.com, Schafer (2025) states that "There's perhaps no clearer way to see how Nvidia ran away from the competition in the AI boom than looking at the company's market capitalization against its peers." and it clearly shows just how much the company's market cap has outperformed the S&P 500 (SPX) index as well as a couple of other mega-cap stocks.
+
 The main problem lies in the weighted percentage of the stock market that NVDA accounts for, as discussed above, combined with how much the NVDA stock price has increased relative to the broader S&P 500 index. A good market crash and sell-off in the S&P 500 and NASDAQ 100 would likely trigger a massive sell-off in NVDA stock. The following chart shows just how far the NVDA stock price has skyrocketed in 2025, and the potential downside in a market crash or sell-off. The chart does not adjust the stock price for the "10-for-1 forward stock split. The shares began trading on a split-adjusted basis at market open on June 10, 2024." (Capoot, 2024) Therefore, the current stock price of one share of NVDA is trading at "\$ 191.84 on November 12th, 2025" (SlickCharts.com, 2025)
 
 We would now need to multiply that price by ten to keep the scale of this analysis accurate, placing the 2025 NVDA price target at approximately \$1918.40 per share.
@@ -328,6 +336,8 @@ Isbitts, R. (2025). Nvidia Stock at 8% of the S&P 500 Index Is a Big Problem for
 McKenna, B. (2019). Why NVIDIA Stock Plunged 31% in 2018. Motley Fool. Retrieved November 12, 2025, from https://www.fool.com/investing/2019/01/14/why-nvidia-stock-plunged-31-in-2018.aspx
 
 Onyshchak, O. (2020). Stock Market Data Set \[Data set\]. Retrieved from Kaggle, 11/12/2025. https://www.kaggle.com/datasets/jacksoncrow/stock-market-dataset
+
+Schafer, J. (2025). 6 charts that capture Nvidia's AI-fueled rise. Yahoo Finance. Retrieved November 12, 2025, from https://finance.yahoo.com/news/6-charts-that-capture-nvidias-ai-fueled-rise-102556380.html
 
 Singh, M. (2024). The 2008 Financial Crisis Explained. Investopedia. Retrieved November 12, 2025, from https://www.investopedia.com/articles/economics/09/financial-crisis-review.asp
 

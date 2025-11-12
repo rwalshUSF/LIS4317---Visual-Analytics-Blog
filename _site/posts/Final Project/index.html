@@ -205,6 +205,9 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <p>The Onyshchak (2020) ‘Stock Market Data Set’ gives us a preview of the NVDA stock crash in March 2020 during the broader market crash at the onset of the COVID-19 pandemic, however, the dataset ends with the last record on 2020-04-01 and the pattern of a decline with rapid recovery continues into the current present time, 2025, which leads to the main conclusive visualization that will be used to support the hypothesis that a substantial market correction, particularly if combined with a significant reduction in long-term demand or technological challenges, could prove to be more than a temporary setback, potentially eroding investor confidence and causing a lasting re-evaluation of Nvidia’s market position and value.</p>
+<p>Here is some related work; a visualization or example of visual analytics from YahooFinance.com that inspired me:</p>
+<p><a href="yahoo.png"><img src="yahoo.png" class="img-fluid"></a> Source: Schafer (2025)</p>
+<p>To compliment this wonderful example of visual analytics from YahooFinance.com, Schafer (2025) states that “There’s perhaps no clearer way to see how Nvidia ran away from the competition in the AI boom than looking at the company’s market capitalization against its peers.” and it clearly shows just how much the company’s market cap has outperformed the S&amp;P 500 (SPX) index as well as a couple of other mega-cap stocks.</p>
 <p>The main problem lies in the weighted percentage of the stock market that NVDA accounts for, as discussed above, combined with how much the NVDA stock price has increased relative to the broader S&amp;P 500 index. A good market crash and sell-off in the S&amp;P 500 and NASDAQ 100 would likely trigger a massive sell-off in NVDA stock. The following chart shows just how far the NVDA stock price has skyrocketed in 2025, and the potential downside in a market crash or sell-off. The chart does not adjust the stock price for the “10-for-1 forward stock split. The shares began trading on a split-adjusted basis at market open on June 10, 2024.” (Capoot, 2024) Therefore, the current stock price of one share of NVDA is trading at “$ 191.84 on November 12th, 2025” (SlickCharts.com, 2025)</p>
 <p>We would now need to multiply that price by ten to keep the scale of this analysis accurate, placing the 2025 NVDA price target at approximately $1918.40 per share.</p>
 <div class="cell">
@@ -226,6 +229,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Isbitts, R. (2025). Nvidia Stock at 8% of the S&amp;P 500 Index Is a Big Problem for Investors. Let’s Do the Math. Yahoo Finance. Retrieved November 12, 2025, from https://finance.yahoo.com/news/nvidia-stock-8-p-500-144222897.html?guccounter=1&amp;guce_referrer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8&amp;guce_referrer_sig=AQAAAGAeVMpI1Uv_j-RSefa75j0HuiqintWQW1yuzFH1c1732wGVhHwYuY889a_YXpBHRKDacmydvGmEwztfIunh-EG0JeN5ibAZZocA4RvrwsUkaMhnQccmwxRE0qLvjw18z8Q7KMrN4OJrhohtzOKMbMYEi8cu68TspyM34hRgOMHt</p>
 <p>McKenna, B. (2019). Why NVIDIA Stock Plunged 31% in 2018. Motley Fool. Retrieved November 12, 2025, from https://www.fool.com/investing/2019/01/14/why-nvidia-stock-plunged-31-in-2018.aspx</p>
 <p>Onyshchak, O. (2020). Stock Market Data Set [Data set]. Retrieved from Kaggle, 11/12/2025. https://www.kaggle.com/datasets/jacksoncrow/stock-market-dataset</p>
+<p>Schafer, J. (2025). 6 charts that capture Nvidia’s AI-fueled rise. Yahoo Finance. Retrieved November 12, 2025, from https://finance.yahoo.com/news/6-charts-that-capture-nvidias-ai-fueled-rise-102556380.html</p>
 <p>Singh, M. (2024). The 2008 Financial Crisis Explained. Investopedia. Retrieved November 12, 2025, from https://www.investopedia.com/articles/economics/09/financial-crisis-review.asp</p>
 <p>SlickCharts.com (2025). S&amp;P 500 Companies by Market Cap. SlickCharts. Retrieved November 12, 2025, from https://www.slickcharts.com/sp500</p>
 <p>SlickCharts.com (2025). Nasdaq 100 Companies by Market Cap. SlickCharts. Retrieved November 12, 2025, from https://www.slickcharts.com/nasdaq100</p>
@@ -324,7 +328,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/rwalshusf\.quarto\.pub\/lis4317---visual-analytics-blog");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
