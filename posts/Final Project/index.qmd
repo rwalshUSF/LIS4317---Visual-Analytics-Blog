@@ -141,14 +141,17 @@ peak_date <- subset_to_april_15_2000$Date[which.max(subset_to_april_15_2000$Clos
 
 # Create ggplot graph with conditional line color and monthly breaks
 ggplot(data = subset_to_april_15_2000, aes(x = Date, y = Close)) +
-  # Use geom_line & split the line into segments based on a condition
   geom_line(aes(color = Date > peak_date), linewidth = 1.5) +
-  scale_color_manual(values = c("FALSE" = "steelblue", "TRUE" = "red"), guide = "none") +
+  scale_color_manual(
+    name = "Prices:", # Title for the legend
+    values = c("FALSE" = "steelblue", "TRUE" = "red"),
+    labels = c("FALSE" = "Increasing", "TRUE" = "Decreasing") # Labels for legend entries
+  ) +
   labs(
     title = "NVDA Stock Price: Rise and Fall before April 15th, 2000",
     subtitle = "Highlighting the peak in blue and start of the dot-com decline with a red line",
     caption = "Data source: Onyshchak, O. (2020) - Kaggle.com",
-    x = "Date",
+    x = "Date (Year,Month)",
     y = "Closing Stock Price (USD)"
   ) +
   scale_x_date(
@@ -160,7 +163,8 @@ ggplot(data = subset_to_april_15_2000, aes(x = Date, y = Close)) +
   theme(
     plot.title = element_text(hjust = 0.5, face = "bold"),
     plot.subtitle = element_text(hjust = 0.5),
-    axis.text.x = element_text(angle = 45, hjust = 1)
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    legend.position = "right" # Position the legend on the right
   )
 
 ```
@@ -176,7 +180,7 @@ ggplot(data = myDF, aes(x = Date, y = Close)) +
   labs(
     title = "NVDA Stock Price: From 1999-2020",
     caption = "Data source: Onyshchak, O. (2020) - Kaggle.com",
-    x = "Date",
+    x = "Date (Year)",
     y = "Closing Stock Price (USD)"
   ) +
   scale_x_date(
@@ -211,12 +215,16 @@ peak_date <- subset_to_december_2008$Date[which.max(subset_to_december_2008$Clos
 ggplot(data = subset_to_december_2008, aes(x = Date, y = Close)) +
   # Use geom_line & split the line into segments based on a condition
   geom_line(aes(color = Date > peak_date), linewidth = 1.5) +
-  scale_color_manual(values = c("FALSE" = "steelblue", "TRUE" = "red"), guide = "none") +
+  scale_color_manual(
+    values = c("FALSE" = "steelblue", "TRUE" = "red"),
+    labels = c("Increasing", "Decreasing"),
+    name = "Prices:" # Set the legend title
+  ) +
   labs(
     title = "NVDA Stock Price: Rise and Fall before December 2008",
-    subtitle = "Highlighting the peak in blue and start of the financial crisis decline with a red line",
+    subtitle = "Highlighting the pre-peak rise in blue and post-peak decline with a red line",
     caption = "Data source: Onyshchak, O. (2020) - Kaggle.com",
-    x = "Date",
+    x = "Date (Year, Month)",
     y = "Closing Stock Price (USD)"
   ) +
   scale_x_date(
@@ -228,7 +236,8 @@ ggplot(data = subset_to_december_2008, aes(x = Date, y = Close)) +
   theme(
     plot.title = element_text(hjust = 0.5, face = "bold"),
     plot.subtitle = element_text(hjust = 0.5),
-    axis.text.x = element_text(angle = 45, hjust = 1)
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    legend.position = "right" # Position the legend on the right
   )
 ```
 
@@ -250,12 +259,16 @@ peak_date <- subset_to_december_2018$Date[which.max(subset_to_december_2018$Clos
 ggplot(data = subset_to_december_2018, aes(x = Date, y = Close)) +
   # Use geom_line & split the line into segments based on a condition
   geom_line(aes(color = Date > peak_date), linewidth = 1.5) +
-  scale_color_manual(values = c("FALSE" = "steelblue", "TRUE" = "red"), guide = "none") +
+  scale_color_manual(
+    values = c("FALSE" = "steelblue", "TRUE" = "red"),
+    labels = c("Increasing", "Decreasing"),
+    name = "Prices:" # Set the legend title
+  ) +
   labs(
     title = "NVDA Stock Price: Rise and Fall before December 2018",
-    subtitle = "Highlighting the peak in blue and start of the crypto decline with a red line",
+    subtitle = "Highlighting the pre-peak rise in blue and post-peak decline with a red line",
     caption = "Data source: Onyshchak, O. (2020) - Kaggle.com",
-    x = "Date",
+    x = "Date (Year, Month)",
     y = "Closing Stock Price (USD)"
   ) +
   scale_x_date(
@@ -267,7 +280,8 @@ ggplot(data = subset_to_december_2018, aes(x = Date, y = Close)) +
   theme(
     plot.title = element_text(hjust = 0.5, face = "bold"),
     plot.subtitle = element_text(hjust = 0.5),
-    axis.text.x = element_text(angle = 45, hjust = 1)
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    legend.position = "right" # Position the legend on the right
   )
 
 ```
@@ -325,7 +339,7 @@ ggplot(myDF, aes(x = Date, y = Close)) +
            vjust = 2, hjust = 1.1, color = "red", size = 4) +
   labs(title = "NVIDIA Stock Price Time Series with Linear Forecast",
        subtitle = "Not price adjusted for the 10:1 stock-split in 2024",
-       x = "Date",
+       x = "Date (Year)",
        y = "Closing Price (USD)") +
   theme_minimal() +
   # Set the x-axis breaks to a reasonable interval extending to the end date
